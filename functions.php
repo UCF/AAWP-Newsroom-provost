@@ -106,7 +106,7 @@ function frontpage_excerpt_length( $length ) {
     }
     return 30;
 }
-add_filter( 'excerpt_length', 'frontpage_excerpt_length', 999 );
+//add_filter( 'excerpt_length', 'frontpage_excerpt_length', 999 );
 
 
 function new_excerpt_more($more) {
