@@ -1,0 +1,109 @@
+/*
+header class
+ */
+
+.news-nav{
+      border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.news-nav a {
+    color: #000;
+}
+
+
+
+
+/*
+Top Articles
+ */
+ .news-lg-bg {
+     height: 28em;
+ }
+
+ .news-md-bg {
+    height: 13.75em;
+}
+
+.text-shadow {
+  text-shadow:0 2px 6px rgba(1,1,1,1);
+}
+
+/*
+sidebar
+ */
+.news-sidebar {
+  border-left: 1px solid rgba(0,0,0,.1);
+}
+
+/*
+Frontpage articles
+ */
+
+.pft-intro {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.pft-intro p {
+  font-size: 1.2em;
+  color:#6a6a6a;
+}
+
+.front-post {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.article-content .pft-title {
+  font-weight: 400;
+  color: #000;
+}
+
+.article-content .pft-title .article-content .pft-title:hover, .article-content .pft-title:active, .article-content .pft-title:visited {
+  color: #000;
+}
+
+
+.front-post p{
+  color:#6a6a6a;
+}
+
+.pft-readmore {
+  color: #000;
+  font-weight: 600;
+
+}
+
+/*
+*
+* Post css
+*
+ */
+
+ .cat-link {
+   font-weight: 500;
+   text-transform: uppercase;
+   font-size: 1em;
+   color: #000;
+   text-decoration: none;
+     cursor: pointer;
+     position: relative;
+ }
+
+ .cat-link:hover {
+   text-decoration: none;
+ }
+
+ .cat-link::after {
+     position: absolute;
+     content: '';
+     height: 2px;
+     background: #ffcc00;
+     left: 0;
+     bottom: 0px;
+     width: 100%;
+ }
+
+ .post-title {}
+
+.post-thumbnail {
+  font-size: .8em;
+}
