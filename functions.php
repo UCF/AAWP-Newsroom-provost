@@ -113,7 +113,7 @@ function new_excerpt_more($more) {
     global $post;
     return $more . '<a href="'. get_permalink( $post->ID ). '" class="pft-readmore d-block"> <span class="badge badge-primary mt-3">Learn More &raquo;</span></a>';
 }
-add_filter('the_excerpt', 'new_excerpt_more');
+//add_filter('the_excerpt', 'new_excerpt_more');
 
 
 
