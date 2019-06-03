@@ -56,6 +56,9 @@ function ucfwp_get_header_markup(){?>
 
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/top-articles.php');
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/latest-articles.php');
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/tax-articles.php');
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/provost-info.php');
+
 
 
 // article layout
@@ -72,11 +75,11 @@ function provost_news_sidebar() {
     register_sidebar(
         array (
             'name' => __( 'Frontpage Sidebar' ),
-            'id' => 'sidebar-1',
+            'id' => 'font-sidebar',
             'description' => __( 'Sidebar for the frontpage' ),
-            'before_widget' => '<div class="widget-content mb-5">',
+            'before_widget' => '<div class="widget-content mb-5 pb-5 divider">',
             'after_widget' => "</div>",
-            'before_title' => '<h3 class="widget-title h6 py-2 px-3 bg-inverse text-uppercase font-weight-bold">',
+            'before_title' => '<h2 class="widget-title heading-underline">',
             'after_title' => '</h3>',
         )
 
@@ -94,17 +97,24 @@ function provost_news_sidebar() {
         )
 
     );
+
 }
 add_action( 'widgets_init', 'provost_news_sidebar' );
 
 
+// Filter except length to 35 words.
+// tn custom excerpt length
+function tn_custom_excerpt_length( $length ) {
+return 20;
+}
+add_filter( 'excerpt_length', 'tn_custom_excerpt_length', 999 );
 
 
 function frontpage_excerpt_length( $length ) {
   if(is_singular('post')){
     continue;
     }
-    return 30;
+    return 10;
 }
 //add_filter( 'excerpt_length', 'frontpage_excerpt_length', 999 );
 

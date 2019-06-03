@@ -21,12 +21,40 @@ Top Articles
  }
 
  .news-md-bg {
-    height: 13.75em;
+    height: 12em; /*13.25*/
 }
 
 .text-shadow {
   text-shadow:0 2px 6px rgba(1,1,1,1);
 }
+
+
+
+.published-date{
+  font-size: .8em;
+}
+
+.vertical-divider {
+  width: 1px;
+  background-color: rgba(0,0,0,.1);
+}
+
+.divider {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+
+
+}
+
+
+/*
+Provost New section frontpage
+ */
+
+.provost-new-list {
+  
+}
+
+
 
 /*
 sidebar
