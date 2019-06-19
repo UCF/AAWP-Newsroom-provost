@@ -3,13 +3,30 @@ header class
  */
 
 .news-nav{
-      border-bottom: 1px solid rgba(0,0,0,.1);
+      border-bottom: 1px solid #e6ebed;
 }
 
 .news-nav a {
     color: #000;
+
 }
 
+.news-nav .nav-item:hover {
+
+
+}
+
+#header-menu .menu-item:hover a {
+  color: #fff;
+  background: #000
+}
+
+/*
+Off canvas menu
+ */
+.ocs-slidebar {
+  z-index: 10000 !important;
+}
 
 
 
@@ -41,8 +58,18 @@ Top Articles
 
 .divider {
   border-bottom: 1px solid rgba(0,0,0,.1);
+}
 
+.provost-section {
+border-bottom: 1px solid rgba(0,0,0,.1);
+}
 
+.colleges-list li {
+
+}
+
+.colleges-list li a{
+  color: #000;
 }
 
 
@@ -51,7 +78,7 @@ Provost New section frontpage
  */
 
 .provost-new-list {
-  
+
 }
 
 
@@ -129,6 +156,8 @@ Frontpage articles
      bottom: 0px;
      width: 100%;
  }
+
+ .cat-link:hover, .cat-link:active { color: #000;}
 
  .post-title {}
 

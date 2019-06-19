@@ -4,7 +4,7 @@
 		<?php wp_head(); ?>
 	</head>
 	<body ontouchstart <?php body_class(); ?>>
-
+		 <?php do_action('website_before'); ?>
 		<a class="skip-navigation bg-complementary text-inverse box-shadow-soft" href="#content">Skip to main content</a>
 		<div id="ucfhb"></div>
 
@@ -19,5 +19,3 @@
 			<div class="site-content" id="content" tabindex="-1">
 
 <?php
-
-      

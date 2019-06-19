@@ -1,26 +1,27 @@
 <?php
-// entry footer look
 
-function provost_news_entry_footer1() { ?>
- <footer class="entry-footer mt-5 pb-5 row">
-
-           <div class="post-tags  col-12 col-md-6">
-             <?php if ( is_active_sidebar( 'social_sidebar' ) ) : ?>
-                <ul id="social">
-                    <?php dynamic_sidebar( 'social_sidebar' ); ?>
-                </ul>
-            <?php endif; ?>
-           </div>
+/*
+Post footer. It adds a sidebar so you your own content under the post
+*/
 
 
+function provost_news_entry_footer() { ?>
+ <footer class="entry-footer mt-4 pb-5 row divider">
+      <div class="post-tags  col-12 col-md-8">
 
-             <div class="post-full-author col-12 col-md-6">
-               <h2 class="mb-0 h5">Author</h2>
-               <div class="author font-weight-bold small"><?php the_author();?></div>
-
-             </div>
-
-
+          <?php
+          if(get_the_tag_list()) {
+            echo get_the_tag_list('<p><Strong>Filed Under: </Strong> ',', ','</p>');
+            }
+            ?>
+      </div >
+      <div class="post-share col-12 col-md-4 ">
+        <?php if ( is_active_sidebar( 'social_sidebar' ) ) : ?>
+          <div class="list">
+             <?php dynamic_sidebar( 'social_sidebar' ); ?>
+         </div>
+       <?php endif; ?>
+      </div>
 
 </footer>
 <?php }

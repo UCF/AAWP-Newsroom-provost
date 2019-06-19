@@ -1,11 +1,14 @@
 <?php
 
+/*
+Homepage of listing articles by category. As of right now it will list all categories and add articles if they have an image
+ */
 
 
 function provost_news_featured_tax() {
           $evenodd = 1;
 
-                  $categories = get_terms( array(
+                  $categories = get_terms( array( // get categories
                         'taxonomy' => 'category',
                         'orderby' => 'menu_order',
                         'order' => 'ASC',
@@ -25,7 +28,7 @@ function provost_news_featured_tax() {
                                   'terms' => $category->slug,
                               ),
                           ),
-                        'meta_query' => array(
+                        'meta_query' => array( //requires a feature i,age
                             array(
                              'key' => '_thumbnail_id',
                              'compare' => 'EXISTS'
@@ -48,17 +51,17 @@ function provost_news_featured_tax() {
                          <?php
                           $count = 1;
                           while($loop->have_posts()) : $loop->the_post();
-                              $article_link = esc_url(get_permalink());
+                              $link_url = esc_url(get_permalink());
                              if ($evenodd % 2 == 0):
                                /*
                                Odd number design. Left column bigger image
 
                                 */
-                                provost_news_cat_odd($count);
+                                provost_news_cat_odd($count,$link_url); //big image on the left
 
 
                               else:
-                              provost_news_cat_even($count);
+                              provost_news_cat_even($count,$link_url); //big image on the right
                             endif;
 
 
@@ -69,7 +72,7 @@ function provost_news_featured_tax() {
                             </div>
                               <div class="col-12 my-3">
                                 <div class="d-flex align-items-center justify-content-end">
-                                  <a href="#" class="text-uppercase">More <?php echo esc_html($category->name); ?> ></a>
+                                  <a href="<?php echo esc_url( $category_link );  ?>" class="text-uppercase">More <?php echo esc_html($category->name); ?> ></a>
 
                                 </div>
                               </div>
@@ -85,7 +88,7 @@ function provost_news_featured_tax() {
 
 
 
-function provost_news_cat_odd($count){
+function provost_news_cat_odd($count,$link_url){
 
   if($count == 1):?>
 
@@ -125,7 +128,7 @@ if($count > 1):?>
 
 }
 
-function provost_news_cat_even($count){
+function provost_news_cat_even($count,$link_url){
 
     if($count == 1):?>
 

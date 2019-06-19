@@ -3,6 +3,48 @@
 //define('PLUGIN_FOLDER', plugin_dir_path( __FILE__ )  );
 define( 'PROVOST_NEWS_THEME_DIR', trailingslashit( get_stylesheet_directory() ) );
 
+
+ /*
+Require php files
+ */
+//header
+require_once( PROVOST_NEWS_THEME_DIR . 'inc\header.php'); // adds custom logo and changes the header markup
+require_once( PROVOST_NEWS_THEME_DIR . 'inc\sidebars.php'); // stores all the sidebars in one file
+
+//front page
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/top-articles.php'); //homepage top article
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/tax-articles.php'); //homepage article by categories
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/provost-info.php');
+
+//Archive pages (tags, categories, authorpage)
+require_once( PROVOST_NEWS_THEME_DIR . 'inc\archive-title.php');
+
+// article layout
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/post-header.php'); //post header
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/post-footer.php'); //post header
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/provost_news_entry_recomended.php'); //the suggest articles to view
+
+//pagination
+require_once( PROVOST_NEWS_THEME_DIR . 'inc\pagination.php');
+
+
+/*
+A list of all the actions and filters
+*/
+
+//actions
+add_action( 'widgets_init', 'provost_news_sidebar' ); // add all the aditional sidebars inc/sidebars.php
+add_action( 'after_setup_theme', 'athena_custom_logo_setup' ); // add suport for a custom logo inc/header.php
+//filters
+add_filter( 'ucfwp_get_header_content_markup',  '__return_false' ); //remove the title from the header
+add_filter( 'ucfwp_get_header_markup',  '__return_false' ); //remove the the whole nav
+add_filter( 'get_the_archive_title', 'my_theme_archive_title' ); //Remove “Category:”, “Tag:”, “Author:” from the_archive_title - inc/archive-title.php
+// add page-link class to pagination buttons for bootstrap
+add_filter('next_posts_link_attributes', 'boostrap_4_pagination_posts_link_attributes'); //pagination
+add_filter('previous_posts_link_attributes', 'boostrap_4_pagination_posts_link_attributes'); //pagination
+
+
+
 add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );// add parent style
 
 function enqueue_parent_styles() {
@@ -11,123 +53,33 @@ function enqueue_parent_styles() {
 }
 
 
-add_filter( 'ucfwp_get_header_content_markup',  '__return_false' ); //remove the title from the header
-
-add_filter( 'ucfwp_get_header_markup',  '__return_false' ); //remove the the whole nav
-
-function ucfwp_get_header_markup(){?>
-
-  <div class="container top-nav">
-    <div class="d-flex justify-content-end">
-      <ul class="mb-0 pt-2 small list-unstyled">
-        <li><a href="">Back to Provost Website <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a></li>
-      </ul>
-    </div>
-  </div>
-
-  <nav class="navbar navbar-toggleable-md navbar-news-custom news-nav pt-md-0 pb-md-0" role="navigation" aria-label="Site navigation">
-    <div class="container d-flex flex-row flex-nowrap justify-content-between">
-      <span class="mb-0">
-        <a class="navbar-brand mr-lg-5" href="<?php echo get_option("siteurl"); ?>"><?php bloginfo( 'name' ); ?></a>
-      </span>
-      <button class="navbar-toggler ml-auto align-self-start collapsed" type="button" data-toggle="collapse" data-target="#header-menu" aria-controls="header-menu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-text">Navigation</span>
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <?php
-      wp_nav_menu( array(
-        'container'       => 'div',
-        'container_class' => 'collapse navbar-collapse align-self-lg-stretch',
-        'container_id'    => 'header-menu',
-        'depth'           => 2,
-        'fallback_cb'     => 'bs4Navwalker::fallback',
-        'menu_class'      => 'nav navbar-nav ml-md-auto',
-        'theme_location'  => 'header-menu',
-        'walker'          => new bs4Navwalker()
-      ) );
-      ?>
-    </div>
-  </nav>
-
-<?php
-}
+/*
+Custom image sizes
+ */
+ add_action( 'after_setup_theme', 'image_sizes_theme_setup' );
+ function image_sizes_theme_setup() {
+     add_image_size( 'homepage-thumb', 220, 180, true ); // (cropped)
+     add_image_size( 'archive_thumb', 300, 200, true ); // (cropped)
+ }
 
 
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/top-articles.php');
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/latest-articles.php');
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/tax-articles.php');
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/provost-info.php');
+ // Filter except length to 35 words.
+ // tn custom excerpt length
+ function tn_custom_excerpt_length( $length ) {
+ return 20;
+ }
+ add_filter( 'excerpt_length', 'tn_custom_excerpt_length', 999 );
+
+
+ function provost_news_formats_setup() {
+     add_theme_support( 'post-formats', array('link', 'video' ) );
+ }
+ add_action( 'after_setup_theme', 'provost_news_formats_setup' );
 
 
 
-// article layout
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/post-header.php'); //post header
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/post-footer.php'); //post header
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/provost_news_entry_header.php'); //post header
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/provost_news_entry_content.php'); //post content
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/provost_news_entry_footer.php'); //post footer
-require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/provost_news_entry_recomended.php'); //the suggest articles to view
 
-
-//register sidebar
-function provost_news_sidebar() {
-    register_sidebar(
-        array (
-            'name' => __( 'Frontpage Sidebar' ),
-            'id' => 'font-sidebar',
-            'description' => __( 'Sidebar for the frontpage' ),
-            'before_widget' => '<div class="widget-content mb-5 pb-5 divider">',
-            'after_widget' => "</div>",
-            'before_title' => '<h2 class="widget-title heading-underline">',
-            'after_title' => '</h3>',
-        )
-
-    );
-
-    register_sidebar(
-        array (
-            'name' => __( 'Social' ),
-            'id' => 'social_sidebar',
-            'description' => __( 'Display at the top of articles and catagories' ),
-            'before_widget' => '<div class="social-content">',
-            'after_widget' => "</div>",
-            'before_title' => '<div class="">',
-            'after_title' => '</div>',
-        )
-
-    );
-
-}
-add_action( 'widgets_init', 'provost_news_sidebar' );
-
-
-// Filter except length to 35 words.
-// tn custom excerpt length
-function tn_custom_excerpt_length( $length ) {
-return 20;
-}
-add_filter( 'excerpt_length', 'tn_custom_excerpt_length', 999 );
-
-
-function frontpage_excerpt_length( $length ) {
-  if(is_singular('post')){
-    continue;
-    }
-    return 10;
-}
-//add_filter( 'excerpt_length', 'frontpage_excerpt_length', 999 );
-
-
-function new_excerpt_more($more) {
-    global $post;
-    return $more . '<a href="'. get_permalink( $post->ID ). '" class="pft-readmore d-block"> <span class="badge badge-primary mt-3">Learn More &raquo;</span></a>';
-}
-//add_filter('the_excerpt', 'new_excerpt_more');
-
-
-
-function provost_news_formats_setup() {
-    add_theme_support( 'post-formats', array('link', 'video' ) );
-}
-add_action( 'after_setup_theme', 'provost_news_formats_setup' );
+ add_action('get_footer', 'off_canvas_menu_footer');
+ function off_canvas_menu_footer() {
+   do_action('website_after');
+ }
