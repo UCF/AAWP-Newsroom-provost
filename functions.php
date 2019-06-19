@@ -8,8 +8,8 @@ define( 'PROVOST_NEWS_THEME_DIR', trailingslashit( get_stylesheet_directory() ) 
 Require php files
  */
 //header
-require_once( PROVOST_NEWS_THEME_DIR . 'inc\header.php'); // adds custom logo and changes the header markup
-require_once( PROVOST_NEWS_THEME_DIR . 'inc\sidebars.php'); // stores all the sidebars in one file
+require_once( PROVOST_NEWS_THEME_DIR . 'inc/header.php'); // adds custom logo and changes the header markup
+require_once( PROVOST_NEWS_THEME_DIR . 'inc/sidebars.php'); // stores all the sidebars in one file
 
 //front page
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/top-articles.php'); //homepage top article
@@ -17,7 +17,7 @@ require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/tax-articles.php'); 
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/provost-info.php');
 
 //Archive pages (tags, categories, authorpage)
-require_once( PROVOST_NEWS_THEME_DIR . 'inc\archive-title.php');
+require_once( PROVOST_NEWS_THEME_DIR . 'inc/archive-title.php');
 
 // article layout
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/post-header.php'); //post header
@@ -25,7 +25,7 @@ require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/post-footer.php'); //post
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/provost_news_entry_recomended.php'); //the suggest articles to view
 
 //pagination
-require_once( PROVOST_NEWS_THEME_DIR . 'inc\pagination.php');
+require_once( PROVOST_NEWS_THEME_DIR . 'inc/pagination.php');
 
 
 /*

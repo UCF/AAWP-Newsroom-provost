@@ -4,7 +4,7 @@
 post header It includes the category, date published, title, excerpt, and image
 */
 
- function provost_news_entry_header1 (){
+ function provost_news_entry_header() {
  ?>
 
 <header class="entry-header mb-5">
