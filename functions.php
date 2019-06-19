@@ -22,6 +22,7 @@ require_once( PROVOST_NEWS_THEME_DIR . 'inc/archive-title.php');
 // article layout
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/post-header.php'); //post header
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/post-footer.php'); //post header
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/post-content.php'); //post content
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/provost_news_entry_recomended.php'); //the suggest articles to view
 
 //pagination
