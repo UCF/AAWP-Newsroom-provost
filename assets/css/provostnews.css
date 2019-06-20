@@ -49,26 +49,31 @@ Top Articles
   font-size: .8em;
 }
 
-.vertical-divider {
-  width: 1px;
-  background-color: rgba(0,0,0,.1);
-}
 
-.divider {
-  border-bottom: 1px solid rgba(0,0,0,.1);
-}
+/*
+dividers
+ */
 
-.provost-section {
-border-bottom: 1px solid rgba(0,0,0,.1);
-}
+ .vertical-divider {
+   width: 1px;
+   background-color: rgba(0,0,0,.1);
+ }
 
-.colleges-list li {
+ .divider {
+   border-bottom: 1px solid rgba(0,0,0,.1);
+ }
 
-}
+ .provost-section {
+ border-bottom: 1px solid rgba(0,0,0,.1);
+ }
 
-.colleges-list li a{
-  color: #000;
-}
+ .colleges-list li {
+
+ }
+
+ .colleges-list li a{
+   color: #000;
+ }
 
 
 /*
