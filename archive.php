@@ -12,7 +12,12 @@
              <div class="read-more text-uppercase font-weight-bold"><a href="<?php echo $link; ?>" class="btn btn-outline-secondary btn-sm">Read More ></a></div>
        </div>
         <div class="order-0 order-sm-1 col-12 col-sm-6 col-md-4">
-          <div class="archive-thumbnail"> <a href="<?php echo $link; ?>"> <?php the_post_thumbnail( 'medium' ); ?> </a><div>
+            <?php if(has_post_thumbnail()): ?>
+                    <div class="archive-thumbnail"> <a href="<?php echo $link; ?>"> <?php the_post_thumbnail( 'medium' ); ?> </a><div>
+            <?php else: ?>
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/provost-newsroom.jpg" />
+            <?php endif; ?>
+
         </div>
     	</div>
     </article>

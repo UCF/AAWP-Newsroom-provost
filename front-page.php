@@ -7,8 +7,7 @@
 			<div class="main  col-md-12">
         <?php provost_news_section() ?>
 				<section>
-				<?php provost_news_featured_tax(); ?>
-        <?php //provost_news_latest_articles(); ?>
+				<?php // provost_news_featured_tax(); ?>      
 			</section>
 			<?php if ( is_active_sidebar( 'front-sidebar' ) ) : ?>
 				<section class="ucf-today py-4">

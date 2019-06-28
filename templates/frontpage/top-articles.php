@@ -26,7 +26,7 @@ $count = 1;
 
   // The Loop
   if ( $featured->have_posts() ) {?>
-    <section class="featured-stories">
+    <section class="featured-stories cat-provost">
       <div class="top-container py-3">
         <div class="row no-gutters">
 
@@ -34,7 +34,7 @@ $count = 1;
   while ( $featured->have_posts() ) {
     $featured->the_post();
       if($count==1):?>
-        <div class="col-12 col-md-7 px-3">
+        <div class="col-12 col-md-7">
 
             <?php
                 $format = get_post_format() ? : 'standard';
@@ -44,25 +44,22 @@ $count = 1;
                     $link_url = get_field( "pub_article_url" );
                 endif;
             ?>
-            <article class="left-featured post-<?php the_ID(); ?>">
-              <a href="<?php echo $link_url ?>" class="d-flex w-100 p-4 mb-3  media-background-container text-inverse text-decoration-none news-lg-bg">
-                  <?php the_post_thumbnail( 'large', array('class' => 'media-background object-fit-cover img-fluid')); ?>
-              </a>
+            <article>
+              <a href="<?php echo $link_url; ?>"><?php the_post_thumbnail( 'medium-large', array('class' => 'img-fluid mb-3')); ?></a>
               <p class="font-italic published-date mb-0"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="entry-date pl-1"><?php echo esc_html( get_the_date('D M j')); ?></span></p>
-              <h2 class="post-title "><a href="<?php echo $link_url ?>" class="text-secondary"><?php the_title(); ?></a> </h2>
-              <div class="post-excerpt">
-                <p><?php the_excerpt(); ?></p>
-              </div>
+              <h2 class="h4 "> <a href="<?php echo $link_url ?>" class="text-secondary"><?php the_title(); ?></a></h2>
+              <p><?php the_excerpt(); ?></p>
           </article>
-
-
+        </div>
+        <div class="d-none d-md-flex justify-content-center col-md-1">
+          <div class="d-flex flex-column h-100 vertical-divider"></div>
         </div>
       <?php endif; ?>
 
       <?php if( $count > 1):?>
 
         <?php if( $count== 2):?>
-            <div class="col-12 col-md-5 px-3">
+            <div class="col-12 col-md-4">
         <?php endif;?>
 
         <?php
@@ -73,21 +70,18 @@ $count = 1;
            endif;
         ?>
 
-
-            <article class="right-featured post-<?php the_ID(); ?> md-1 mb-md-4">
-              <a href="<?php echo $link_url ?>" class="d-flex w-100 p-4 mb-2 media-background-container text-inverse text-decoration-none news-md-bg">
+            <article class="mb-5" >
+              <a href="<?php echo $link_url ?>" class="d-flex w-100 mb-2 media-background-container text-inverse text-decoration-none news-md-bg">
                   <?php the_post_thumbnail( 'medium', array('class' => 'media-background object-fit-cover img-fluid')); ?>
               </a>
               <p class="font-italic published-date mb-0"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="entry-date pl-1"><?php echo esc_html( get_the_date('D M j')); ?></span></p>
-              <h2 class="post-title h6 "><a href="<?php echo $link_url ?>" class="text-secondary"><?php the_title(); ?></a> </h2>
+              <h2 class="h6"><?php the_title(); ?></h2>
             </article>
-
 
         <?php if($count== 3):?>
               </div>
         <?php endif;?>
       <?php endif;?>
-
 
 <?php
 $count++;
@@ -95,6 +89,7 @@ $count++;
 
       </div>
     </div>
+    <hr class="mt-3 mb-2">
   </section>
   <?php
 } else {
@@ -106,124 +101,30 @@ wp_reset_postdata();
 
 
 }
+ /*
+<div class="row no-gutters">
+  <div class="col-12 col-md-7">
+    <article>
+      <a href="<?php echo $link_url; ?>"><?php the_post_thumbnail( 'medium-large', array('class' => 'img-fluid mb-3')); ?></a>
+      <p class="font-italic published-date mb-0"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="entry-date pl-1"><?php echo esc_html( get_the_date('D M j')); ?></span></p>
+      <h2 class="h4 "> <a href="<?php echo $link_url ?>" class="text-secondary"><?php the_title(); ?></a></h2>
+      <p><?php the_excerpt(); ?></p>
+  </article>
+  </div>
+  <div class="d-none d-md-flex justify-content-center col-md-1">
+    <div class="d-flex flex-column h-100 vertical-divider"></div>
+  </div>
+  <div class="col-12 col-md-4">
 
+<?php endif;
+if($count > 1):?>
+<article class="mb-5" >
+<a href="<?php echo $link_url ?>" class="d-flex w-100 mb-2 media-background-container text-inverse text-decoration-none news-md-bg">
+    <?php the_post_thumbnail( 'medium', array('class' => 'media-background object-fit-cover img-fluid')); ?>
+</a>
+<p class="font-italic published-date mb-0"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="entry-date pl-1"><?php echo esc_html( get_the_date('D M j')); ?></span></p>
+<h2 class="h6"><?php the_title(); ?></h2>
+</article>
+<?php endif;
 
-function provost_news_featured_article1() {
-
-  // WP_Query arguments
-  $args = array(
-  'post_type'              => array( 'post' ),
-  'post_status'            => array( 'publish' ),
-  'order'                  => 'DESC',
-  'orderby'                => 'date',
-  'posts_per_page'          => 3,
-  'meta_query' => array(
-		        array(
-			'key'     => '_thumbnail_id',
-			'value'   => '',
-			'compare' => '!=',
-		        )
-         	      )
-
-
-  );
-
-$count = 1;
-  // The Query
-  $featured = new WP_Query( $args );
-
-  // The Loop
-  if ( $featured->have_posts() ) {?>
-    <section class="featured-stories">
-      <div class="top-container py-3">
-        <div class="row no-gutters">
-
-    <?php
-  while ( $featured->have_posts() ) {
-    $featured->the_post();
-      if($count==1):?>
-        <div class="col-12 col-md-7 p-1">
-          <article class="left-featured post-<?php the_ID(); ?>">
-            <?php
-                $format = get_post_format() ? : 'standard';
-                $link_url = get_the_permalink();
-
-                 if( get_field('pub_article_url') and ($format == 'link' ) ):
-                    $link_url = get_field( "pub_article_url" );
-                endif;
-            ?>
-            <a href="<?php echo $link_url ?>" class="d-flex w-100 p-4 media-background-container text-inverse text-decoration-none news-lg-bg">
-                <?php the_post_thumbnail( 'large', array('class' => 'media-background object-fit-cover img-fluid hover-scale-up')); ?>
-                <div class="align-self-end featured-text">
-                  <div class="home-cat">
-                    <span class="bg-inverse p-1 small text-uppercase font-weight-bold">
-                      <?php $categories = get_the_category();
-                      if ( ! empty( $categories ) ):
-                            echo esc_html( $categories[0]->name );
-                      endif;
-                       ?>
-                    </span>
-                  </div>
-                  <h2 class="text-shadow"><?php the_title(); ?></h2>
-                </div>
-            </a>
-          </article>
-        </div>
-      <?php endif; ?>
-
-      <?php if( $count > 1):?>
-
-        <?php if( $count== 2):?>
-            <div class="col-12 col-md-5 p-1">
-        <?php endif;?>
-
-        <?php
-            $format = get_post_format() ? : 'standard';
-            $link_url = get_the_permalink();
-            if( get_field('pub_article_url')  and ($format == 'link' )):
-               $link_url = get_field( "pub_article_url" );
-           endif;
-        ?>
-
-            <article class="right-featured post-<?php the_ID(); ?>">
-              <a href="<?php echo $link_url ?>" class="d-flex w-100 p-4 media-background-container text-inverse text-decoration-none news-md-bg mb-2">
-                <?php the_post_thumbnail( 'large', array('class' => 'media-background object-fit-cover img-fluid hover-scale-up')); ?>
-                <div class="align-self-end">
-                  <div class="home-cat">
-                    <span class="bg-inverse p-1 small text-uppercase font-weight-bold">
-                      <?php $categories = get_the_category();
-                      if ( ! empty( $categories ) ):
-                            echo esc_html( $categories[0]->name );
-                      endif;
-                       ?>
-                    </span>
-                  </div>
-                  <h3 class="text-shadow h5"><?php the_title(); ?></h3>
-                </div>
-              </a>
-            </article>
-
-
-        <?php if($count== 3):?>
-              </div>
-        <?php endif;?>
-      <?php endif;?>
-
-
-<?php
-$count++;
-} ?>
-
-      </div>
-    </div>
-  </section>
-  <?php
-} else {
-// no posts found
-}
-
-// Restore original Post Data
-wp_reset_postdata();
-
-
-}
+*/
