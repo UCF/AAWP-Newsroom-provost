@@ -1,6 +1,6 @@
 <?php get_header();?>
   <div class="container mt-3 mt-sm-2 mb-3 pb-sm-4">
-    <h1 class="page-title mt-5 mb-5"><?php the_title(); ?></h1>
+    <h1 class="page-title mt-5 mb-5">Latest News</h1>
 
 <?php while ( have_posts() ) : the_post(); ?>
     <article class="term-list-item mb-4 py-5 divider">
