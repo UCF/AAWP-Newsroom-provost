@@ -21,11 +21,19 @@ post header It includes the category, date published, title, excerpt, and image
           <div class="post-date font-italic"> <?php $post_date = get_the_date( 'M j, Y' ); echo esc_html($post_date); ?></div>
         <div class="post-title">
           <?php the_title('<h1 class="post-title mb-3">', '</h1>'); ?>
+          <?php $subheading = get_field('article_sub_heading'); ?>
+          <?php if( $subheading): ?>
         </div>
-        <div class="post-excerpt lead">
-          <p><?php the_excerpt(); ?> </p>
-        </div>
-        <div class="post-author font-italic"> By: <?php the_author();?></div>
+          <div class="post-excerpt lead">
+            <p><?php echo $subheading; ?> </p>
+          </div>
+          <?php endif; ?>
+          <?php $author = get_field('article_author'); ?>
+          <?php if( $author): ?>
+        <div class="post-author font-italic"> By: <?php echo $author; ?></div>
+        <?php else: ?>
+          <div class="post-author font-italic"> By: <?php the_author();?></div>
+        <?php endif; ?>
         <div class="spacer mb-4"> </div>
 			<?php if ( has_post_thumbnail() ): ?>
 				<div class="post-thumbnail ">
