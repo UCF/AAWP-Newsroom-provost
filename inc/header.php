@@ -16,7 +16,7 @@ function ucfwp_get_header_markup(){?>
 
   <nav class="navbar navbar-toggleable-md navbar-news-custom news-nav pt-md-0 pb-md-0" role="navigation" aria-label="Site navigation">
     <div class="container d-flex flex-row flex-nowrap justify-content-between">
-      <span class="mb-0">
+      <span class="logo">
         <?php if ( has_custom_logo() ) {
           the_custom_logo();
         } else { ?>

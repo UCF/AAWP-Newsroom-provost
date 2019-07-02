@@ -13,9 +13,9 @@
        </div>
         <div class="order-0 order-sm-1 col-12 col-sm-6 col-md-4">
             <?php if(has_post_thumbnail()): ?>
-                    <div class="archive-thumbnail"> <a href="<?php echo $link; ?>"> <?php the_post_thumbnail( 'medium' ); ?> </a><div>
+                    <div class="archive-thumbnail"> <a href="<?php echo $link; ?>"> <?php the_post_thumbnail( 'archive_thumb' ); ?> </a><div>
             <?php else: ?>
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/provost-newsroom.jpg" />
+                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/provost-newsroom.jpg"  width="200" height="200" alt="Provost news deafult image"/>
             <?php endif; ?>
 
         </div>
