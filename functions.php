@@ -60,7 +60,8 @@ Custom image sizes
  add_action( 'after_setup_theme', 'image_sizes_theme_setup' );
  function image_sizes_theme_setup() {
      add_image_size( 'homepage-thumb', 220, 180, true ); // (cropped)
-     add_image_size( 'archive_thumb', 400, 200, true ); // (cropped)
+     add_image_size( 'archive_thumb', 300, 200, true ); // (cropped)
+	 add_image_size( 'other_articles_thumb', 200, 150, true ); // (cropped)
 
  }
 
@@ -79,9 +80,19 @@ Custom image sizes
  add_action( 'after_setup_theme', 'provost_news_formats_setup' );
 
 
+/*
+Redirects post to an external site using the article link acf field.
+ */
+ function provost_news_permalink( $url, $post ) {
 
+    $pn_url_redirect =  get_post_meta( $post->ID, 'article_link', TRUE );
 
- add_action('get_footer', 'off_canvas_menu_footer');
- function off_canvas_menu_footer() {
-   do_action('website_after');
- }
+    if (   $pn_url_redirect && 'post' === get_post_type( $post->ID ) ) {
+
+        $url =   $pn_url_redirect;
+    }
+
+    return $url;
+}
+
+add_filter( 'post_link', 'provost_news_permalink', 10, 2 );

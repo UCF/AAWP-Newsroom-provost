@@ -6,29 +6,73 @@ Homepage of listing articles by category. As of right now it will list all categ
 
 
 function provost_news_featured_tax() {
+
+  // check if the repeater field has rows of data
+  $post_id = get_option('page_on_front');
+
+$topArticles = array();
+
+// check if the repeater field has rows of data
+if( have_rows('provost_top_articles_repeater', $post_id) ):
+
+ 	// loop through the rows of data
+    while ( have_rows('provost_top_articles_repeater', $post_id) ) : the_row();
+
+        // display a sub field value
+         $topArticles[] = get_sub_field('provost_top_article');
+
+    endwhile;
+
+endif;
+
+//repeater field to get categories to display
+
+
+    $topics = array();
+
+      $person_relationships = get_field('pn_topics', $post_id);
+
+
+      if (have_rows('pn_topics', $post_id)) {
+        while (have_rows('pn_topics', $post_id)) {
+          the_row();
+
+            $topic_id =  get_sub_field('pn_topic');
+              //var_dump($topic_id);
+              $topics[] = $topic_id->term_id;
+
+        }
+      }
+
+
           $evenodd = 1;
+
+
+
 
                   $categories = get_terms( array( // get categories
                         'taxonomy' => 'category',
-                        'orderby' => 'menu_order',
+                        'orderby' => 'include',
                         'order' => 'ASC',
                         'parent' => 0,
-                        'hide_empty' => True,
+                        'hide_empty' => true,
+                        'include' => $topics,
                     ) );
 
                   foreach($categories as $category) {
                       wp_reset_query();
                       $args = array(
                         'post_type' => 'post',
+                        'post__not_in' => $topArticles,
                         'posts_per_page' => 3,
-                          'tax_query' => array(
+                        'tax_query' => array(
                               array(
                                   'taxonomy' => 'category',
                                   'field' => 'slug',
                                   'terms' => $category->slug,
                               ),
                           ),
-                        'meta_query' => array( //requires a feature i,age
+                        'meta_query' => array( //requires a feature image
                             array(
                              'key' => '_thumbnail_id',
                              'compare' => 'EXISTS'
@@ -40,7 +84,15 @@ function provost_news_featured_tax() {
 
                        if($loop->have_posts()) {?>
 
-                         <section class="cat-<?php echo esc_html($category->slug); ?> py-4 ">
+                         <?php if($evenodd  % 2 == 0):
+                            echo '<section class="cat-' . esc_html($category->slug) .  ' py-5 divider">';
+                          else:
+                              echo '<section class="cat-' . esc_html($category->slug) .  ' py-5 divider light-grey">';
+                          endif;
+                         ?>
+
+                         <div class="container">
+
                            <?php  $evenodd = $evenodd + 1; ?>
 
                           <?php $category_link = get_category_link($category->term_id);  ?>
@@ -53,6 +105,8 @@ function provost_news_featured_tax() {
                           while($loop->have_posts()) : $loop->the_post();
                               $link_url = esc_url(get_permalink());
                              if ($evenodd % 2 == 0):
+                               $postcat = get_the_category();
+
                                /*
                                Odd number design. Left column bigger image
 
@@ -72,16 +126,17 @@ function provost_news_featured_tax() {
                             </div>
                               <div class="col-12 my-3">
                                 <div class="d-flex align-items-center justify-content-end">
-                                  <a href="<?php echo esc_url( $category_link );  ?>" class="text-uppercase">More <?php echo esc_html($category->name); ?> ></a>
+                                  <a href="<?php echo esc_url( $category_link );  ?>" class="text-uppercase btn btn-outline-secondary btn-sm">More <?php echo esc_html($category->name); ?> ></a>
 
                                 </div>
                               </div>
                           </div>
+                        </div>
                         <?php
 
                        }
                       ?>
-                        <hr class="mt-3 mb-2">
+
                     </section> <?php
                   }?>
           <?php }
@@ -95,13 +150,11 @@ function provost_news_cat_odd($count,$link_url){
   <?php
       $format = get_post_format() ? : 'standard';
       $link_url = get_the_permalink();
-      if( get_field('pub_article_url') and ($format == 'link' )):
-        $link_url = get_field( "pub_article_url" );
-     endif;
   ?>
 
   <div class="row no-gutters">
     <div class="col-12 col-md-7">
+
       <article>
         <a href="<?php echo $link_url; ?>"><?php the_post_thumbnail( 'medium-large', array('class' => 'img-fluid mb-3')); ?></a>
         <p class="font-italic published-date mb-0"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="entry-date pl-1"><?php echo esc_html( get_the_date('D M j')); ?></span></p>
@@ -135,9 +188,7 @@ function provost_news_cat_even($count,$link_url){
     <?php
         $format = get_post_format() ? : 'standard';
         $link_url = get_the_permalink();
-        if( get_field('pub_article_url') and ($format == 'link' )):
-          $link_url = get_field( "pub_article_url" );
-       endif;
+
     ?>
 
         <div class="row no-gutters">

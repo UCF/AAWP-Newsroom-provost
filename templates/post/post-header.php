@@ -12,10 +12,12 @@ post header It includes the category, date published, title, excerpt, and image
       <div class="col-md-10">
         <div class="meta post-category text-center mt-4 mb-4 ">
               <?php
+              /*
               foreach((get_the_category()) as $category){?>
                   <a href="<?php echo esc_url( get_category_link( $category->cat_ID ) );  ?>"  class="heading-underline1 py-1 cat-link"> <?php echo $category->name; ?> </a>
                 <?php
               }
+              */
               ?>
           </div>
           <div class="post-date font-italic"> <?php $post_date = get_the_date( 'M j, Y' ); echo esc_html($post_date); ?></div>
@@ -28,12 +30,13 @@ post header It includes the category, date published, title, excerpt, and image
             <p><?php echo $subheading; ?> </p>
           </div>
           <?php endif; ?>
+
           <?php $author = get_field('article_author'); ?>
           <?php if( $author): ?>
-        <div class="post-author font-italic"> By: <?php echo $author; ?></div>
-        <?php else: ?>
-          <div class="post-author font-italic"> By: <?php the_author();?></div>
+        <div class="post-author font-italic small"> By: <?php echo $author; ?></div>      
         <?php endif; ?>
+
+
         <div class="spacer mb-4"> </div>
 			<?php if ( has_post_thumbnail() ): ?>
 				<div class="post-thumbnail ">
