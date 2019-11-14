@@ -4,6 +4,7 @@ function provost_news_featured_article() {
 
   //get the top articles
   $topArticles = [];
+  $post_id = get_the_ID();
 
   // check if the repeater field has rows of data
   if( have_rows('provost_top_articles_repeater', $post_id) ):

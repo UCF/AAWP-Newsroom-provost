@@ -2,21 +2,6 @@
 /*
 Homepage sidebar below top articles
  */
-/*
-function provost_news_section(){?>
-  <?php if ( is_active_sidebar( 'provost_news' ) ) : ?>
-    <section class="provost provost-section mt-4 mb-4 pb-4">
-      <div class="row">
-        <div class="col-12">
-          <?php dynamic_sidebar( 'provost_news' ); ?>
-        </div>
-      </div>
-    </section>
-      <?php endif; ?>
-
-  <?php
-}
-*/
 
 function provost_news_section(){ //provides information on the provost?>
 
@@ -118,7 +103,7 @@ function provost_news_section(){ //provides information on the provost?>
                                     <?php
 
                                   while($loop->have_posts()) : $loop->the_post();
-                                      echo '<li class="divider"><a  class="text-secondary d-block py-2 my-2" href="'.get_permalink().'">'.get_the_title().'</a></li>';
+                                      echo '<li class="divider"><a  class="text-secondary d-block py-2 my-2" href="'. get_post_permalink( ) .'">'.get_the_title().'</a></li>';
                                   endwhile;
                                     ?>
                                     </ul>
