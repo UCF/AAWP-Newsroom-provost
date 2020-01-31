@@ -17,11 +17,11 @@ function ucfwp_get_header_markup(){?>
   <nav class="navbar navbar-toggleable-md navbar-news-custom news-nav pt-md-0 pb-md-0" role="navigation" aria-label="Site navigation">
     <div class="container d-flex flex-row flex-nowrap justify-content-between">
       <span class="logo">
-        <?php if ( has_custom_logo() ) {
+        <?php/* if ( has_custom_logo() ) {
           the_custom_logo();
-        } else { ?>
-        <a class="navbar-brand mr-lg-5" href="<?php echo esc_url( home_url( '/' )); ?>"><?php bloginfo( 'name' ); ?></a>
-        <?php  } ?>
+        } else { */?>
+        <a class="navbar-brand mr-lg-5 text-uppercase" href="<?php echo esc_url( home_url( '/' )); ?>"> Provost &nbsp; <span class="text-primary">Newsroom</span> <?php /*bloginfo( 'name' );*/ ?></a>
+        <?php  /* } */ ?>
       </span>
       <button class="navbar-toggler ml-auto align-self-start collapsed" type="button" data-toggle="collapse" data-target="#header-menu" aria-controls="header-menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-text">Navigation</span>

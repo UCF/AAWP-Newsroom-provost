@@ -3,8 +3,8 @@
 
 	<div class="main mb-5 pb-sm-4">
     <?php provost_news_featured_article(); ?>
-		<div class="row">
-			<div class="main  col-md-12">
+
+
 				<section class="provost-section">
         <?php provost_news_section() ?>
 			</section>
@@ -19,8 +19,7 @@
 				</section>
 				<?php endif; ?>
       <?php //get_sidebar(); ?>
-    </div>
-	</div>
+  
 
 
 <?php get_footer(); ?>

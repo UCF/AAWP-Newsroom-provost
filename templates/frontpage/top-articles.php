@@ -61,11 +61,6 @@ $count = 1;
 
                 $link_url = get_the_permalink();
 
-                 if( get_field('pub_article_url') and ($format == 'link' ) ):
-
-                    $link_url = get_field( "pub_article_url" );
-
-                endif;
             ?>
             <article class="post-<?php the_ID(); ?> pn-article pnt-article">
 
@@ -73,9 +68,9 @@ $count = 1;
 
               <p class="font-italic published-date mb-0"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="entry-date pl-1"><?php echo esc_html( get_the_date('D M j')); ?></span></p>
 
-              <h2 class="h4 "> <a href="<?php echo $link_url ?>" class="text-secondary"><?php the_title(); ?></a></h2>
+              <h2 class="h4 "> <a href="<?php echo $link_url ?>" class="text-secondary"> <?php the_title(); ?></a></h2>
 
-              <p><?php the_excerpt(); ?></p>
+              <p><?php the_field( "article_description" ) ?></p>
 
           </article>
 

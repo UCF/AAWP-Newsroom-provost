@@ -35,7 +35,7 @@ A list of all the actions and filters
 
 //actions
 add_action( 'widgets_init', 'provost_news_sidebar' ); // add all the aditional sidebars inc/sidebars.php
-add_action( 'after_setup_theme', 'athena_custom_logo_setup' ); // add suport for a custom logo inc/header.php
+//add_action( 'after_setup_theme', 'athena_custom_logo_setup' ); // add suport for a custom logo inc/header.php
 //filters
 add_filter( 'ucfwp_get_header_content_markup',  '__return_false' ); //remove the title from the header
 add_filter( 'ucfwp_get_header_markup',  '__return_false' ); //remove the the whole nav
@@ -85,6 +85,10 @@ Redirects post to an external site using the article link acf field.
  */
  function provost_news_permalink( $url, $post ) {
 
+   if ( is_admin() ) {
+      return $url;
+   }
+
     $pn_url_redirect =  get_post_meta( $post->ID, 'article_link', TRUE );
 
     if (   $pn_url_redirect && 'post' === get_post_type( $post->ID ) ) {
@@ -96,3 +100,49 @@ Redirects post to an external site using the article link acf field.
 }
 
 add_filter( 'post_link', 'provost_news_permalink', 10, 2 );
+
+
+
+//Themeisle external link for imported articles
+
+add_filter('post_link', function($url,$post) {
+
+
+   if ( is_admin() ) {
+      return $url;
+   }
+
+
+   $current_post_meta = get_post_meta( $post->ID, 'feedzy_item_url', true );
+/*
+   if ( ! empty( $current_post_meta ) ) {
+      return $current_post_meta;
+   }
+*/
+
+if (   $current_post_meta && 'post' === get_post_type( $post->ID ) ) {
+
+    $url =   $current_post_meta;
+}
+
+
+
+   return $url;
+}, 99, 2);
+
+
+
+/*ACF Option Page */
+
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page(array(
+		'page_title' 	=> 'Theme Template Images',
+		'menu_title'	=> 'Default Images',
+		'menu_slug' 	=> 'theme-template-images-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false,
+    'parent_slug' => 'edit.php',
+	));
+
+}
