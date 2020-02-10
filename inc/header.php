@@ -20,7 +20,7 @@ function ucfwp_get_header_markup(){?>
         <?php/* if ( has_custom_logo() ) {
           the_custom_logo();
         } else { */?>
-        <a class="navbar-brand mr-lg-5 text-uppercase" href="<?php echo esc_url( home_url( '/' )); ?>"> Provost &nbsp; <span class="text-primary">Newsroom</span> <?php /*bloginfo( 'name' );*/ ?></a>
+        <a class="navbar-brand mr-lg-5 text-uppercase" href="<?php echo esc_url( home_url( '/' )); ?>"> Provost &nbsp; <span class="text-primary">Newsroom</span></a>
         <?php  /* } */ ?>
       </span>
       <button class="navbar-toggler ml-auto align-self-start collapsed" type="button" data-toggle="collapse" data-target="#header-menu" aria-controls="header-menu" aria-expanded="false" aria-label="Toggle navigation">

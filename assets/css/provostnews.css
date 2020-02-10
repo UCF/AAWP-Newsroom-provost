@@ -16,6 +16,17 @@ header class
 
 }
 
+.search-input input{
+  border-radius: 10px 0px 0px 10px !important;
+}
+
+.search-input button{
+  border-radius: 0px 10px 10px 0px !important;
+}
+
+.search-bar {
+  /* height: 150px !important; */
+}
 
 
 /*

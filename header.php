@@ -13,6 +13,11 @@
 
 			<?php echo ucfwp_get_header_markup(); ?>
 		</header>
+		<div class="search-bar bg-inverse" style="display:none;">
+			<div class="container pt-5 pb-5">
+				<?php get_search_form(); ?>
+			</div>
+		</div>
 
 		<main class="site-main">
 			<?php echo ucfwp_get_subnav_markup(); ?>

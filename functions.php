@@ -43,7 +43,7 @@ add_filter( 'get_the_archive_title', 'my_theme_archive_title' ); //Remove “Cat
 // add page-link class to pagination buttons for bootstrap
 add_filter('next_posts_link_attributes', 'boostrap_4_pagination_posts_link_attributes'); //pagination
 add_filter('previous_posts_link_attributes', 'boostrap_4_pagination_posts_link_attributes'); //pagination
-
+add_theme_support('html5', array('search-form'));
 
 
 add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );// add parent style
@@ -51,6 +51,7 @@ add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );// add parent style
 function enqueue_parent_styles() {
    wp_enqueue_style( 'parent-style', get_template_directory_uri().'/style.css' );
    wp_enqueue_style( 'provost-news-style', get_stylesheet_directory_uri() .'/assets/css/provostnews.css', array(),'1.0.0' );
+   wp_enqueue_script('provost-news-search', get_stylesheet_directory_uri() .'/assets/js/search.js', array(),'1.0.0');
 }
 
 
@@ -146,3 +147,33 @@ if( function_exists('acf_add_options_page') ) {
 	));
 
 }
+
+
+
+/**
+ * Disable the UCF WP Theme's template redirect overrides so that we can
+ * define our own in this theme.
+  */
+
+
+function remove_redirects() {
+    remove_action( 'template_redirect', 'ucfwp_kill_unused_templates' );
+}
+add_action( 'after_setup_theme', 'remove_redirects');
+
+
+/**
+ * Kill unused templates in this theme.  Redirect to the homepage if
+ * an unused template is requested.
+ */
+
+function today_kill_unused_templates() {
+	global $wp_query, $post;
+
+	if ( is_author() || is_attachment() || is_date() || is_comment_feed() ) {
+		wp_redirect( home_url() );
+		exit();
+	}
+}
+
+add_action( 'template_redirect', 'today_kill_unused_templates' );
