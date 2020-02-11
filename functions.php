@@ -177,3 +177,95 @@ function today_kill_unused_templates() {
 }
 
 add_action( 'template_redirect', 'today_kill_unused_templates' );
+
+
+
+/*query variables */
+add_action('init','add_get_val');
+function add_get_val() {
+    global $wp;
+    $wp->add_query_var('cat');
+    $wp->add_query_var('units');
+    $wp->add_query_var('listorder');
+}
+
+
+function search_filter($query) {
+    if ( ! is_admin() && $query->is_main_query() ) {
+        if ( $query->is_search ) {
+            $query->set( 'post_type', 'post' );
+
+/*
+            $catlist ='';
+            $unlist = "";
+
+            if ( get_query_var('cat') ) {
+              $catlist = get_query_var('cat');
+            }else{
+              $terms = get_terms( 'category', 'orderby=name' );
+              $catlist = wp_list_pluck( $terms, 'term_id' );
+
+            }
+
+            if ( get_query_var('units') ) {
+              $unlist = get_query_var('units');
+            }else{
+              $terms = get_terms( 'academic_units', 'orderby=name' );
+              $unlist = wp_list_pluck( $terms, 'slug' );
+
+            }
+
+            var_dump($catlist);
+              var_dump($unlist);
+
+            $taxquery = array(
+            	'relation' => 'AND',
+
+            	array(
+            		'taxonomy'         => 'category',
+            		'field'            => 'term_id',
+                'terms'            => $catlist,
+                'operator'         => 'EXISTS',
+
+            	),
+            	array(
+            		'taxonomy'         => 'academic_unit',
+            		'field'            => 'slug',
+                'terms'            => $unlist,
+                'operator'         => 'EXISTS',
+
+            	),
+       );
+
+
+       $query->set( 'tax_query', $taxquery );
+*/
+
+
+    $tax_query = array('relation' => 'AND');
+
+          if ( get_query_var('cat') ) {
+            $tax_query[] =  array(
+                      'taxonomy' => 'category',
+                      'field' => 'term_id',
+                      'terms' => get_query_var('cat')
+                  );
+          }
+
+
+          if ( get_query_var('units') ) {
+            $tax_query[] =  array(
+                      'taxonomy' => 'academic_units',
+                      'field' => 'slug',
+                      'terms' => get_query_var('units')
+                  );
+          }
+
+
+ $query->set( 'tax_query', $tax_query );
+
+
+        }
+    }
+}
+add_action( 'pre_get_posts', 'search_filter' );
