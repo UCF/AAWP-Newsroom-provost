@@ -16,6 +16,7 @@ header class
 
 }
 
+/*
 .search-input input{
   border-radius: 10px 0px 0px 10px !important;
 }
@@ -24,8 +25,31 @@ header class
   border-radius: 0px 10px 10px 0px !important;
 }
 
+*/
+
 .search-bar {
   /* height: 150px !important; */
+}
+
+.newsroom-search{
+  background-color:;
+  color: #000;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-left: solid 2px #eceeef;
+  border-right: solid 2px #eceeef;
+}
+
+.newsroom-search a{
+  color: #000;
+}
+
+.newsroom-search a:hover, .newsroom-search a:active {
+  color: #ffcc00;
+}
+
+.newsroom-search .fa{
+  font-size: 22px;
 }
 
 
