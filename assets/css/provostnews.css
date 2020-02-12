@@ -52,6 +52,8 @@ header class
   font-size: 22px;
 }
 
+	.search-highlight { background-color:#FF0; font-weight:bold; }
+
 
 /*
 Off canvas menu
