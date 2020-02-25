@@ -25,7 +25,7 @@ function provost_news_entry_footer() { ?>
 
                 $term_link = get_term_link( $term );
 
-                  echo '<a href="' . esc_url( $term_link ) .'" class="term-link btn btn-secondary btn-sm mr-2">' . $term->name .'</a>';
+                  echo '<a href="' . esc_url( $term_link ) .'" class="term-link btn btn-secondary btn-sm my-1 mr-2">' . $term->name .'</a>';
 
 
                   }
