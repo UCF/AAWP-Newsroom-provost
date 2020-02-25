@@ -158,7 +158,7 @@ function provost_news_cat_odd($count,$link_url){ //grey background
       <article>
         <a href="<?php echo $link_url; ?>" title="<?php the_title_attribute(); ?>"><?php the_post_thumbnail( 'full', array('class' => 'img-fluid mb-3')); ?></a>
         <p class="font-italic published-date mb-0"><i class="fa fa-clock-o" aria-hidden="true"></i><span class="entry-date pl-1"><?php echo esc_html( get_the_date('D M j')); ?></span></p>
-        <h2 class="h4 "> <a href="<?php echo $link_url ?>" class="text-secondary"><?php the_title(); ?> test</a></h2>
+        <h2 class="h4 "> <a href="<?php echo $link_url ?>" class="text-secondary"><?php the_title(); ?></a></h2>
         <p><?php the_excerpt(); ?></p>
     </article>
     </div>
