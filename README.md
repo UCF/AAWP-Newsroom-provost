@@ -1,11 +1,19 @@
 # Provost Newsroom
 
-A responsive new theme for the provost office
+A responsive news theme for the provost office
 
 ## Documentation
 This theme requires Advance Custom Fields Pro to activate.
 
 ##Updates
+
+### 1.3003
+-fixed header issue on mobile
+-added ids for categories on the Homepage
+-add search feature with the ability to sort by category and academic unit
+-fixed accessibility and seo
+-added spacing between tags on post
+
 
 ###1.3
 -fixed issues with the header
