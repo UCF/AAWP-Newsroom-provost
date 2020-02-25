@@ -2,6 +2,21 @@
 header class
  */
 
+.site-header .navbar-toggler{border-color: #222;}
+
+.site-header .navbar-toggler-icon i{
+  color: #222;
+line-height: 30px;
+}
+
+
+@media (max-width: 991px){
+.navbar-custom .navbar-collapse, .navbar-mainsite .navbar-collapse {
+    background-color: #ffcc00 !important;
+    color: #fff;
+  }
+}
+
 .news-nav{
       border-bottom: 1px solid #e6ebed;
 }
@@ -31,15 +46,19 @@ header class
   /* height: 150px !important; */
 }
 
+@media (min-width: 768px) {
 .newsroom-search{
   background-color:;
   color: #000;
-  padding-left: 20px;
-  padding-right: 20px;
   border-left: solid 2px #eceeef;
   border-right: solid 2px #eceeef;
-}
+  }
 
+.newsroom-search i {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+}
 .newsroom-search a{
   color: #000;
 }
