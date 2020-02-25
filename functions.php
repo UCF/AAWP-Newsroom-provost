@@ -195,6 +195,9 @@ function add_get_val() {
 }
 
 
+
+
+
 function search_filter($query) {
     if ( ! is_admin() && $query->is_main_query() ) {
         if ( $query->is_search ) {
