@@ -33,7 +33,7 @@ function ucfwp_get_header_markup(){?>
   <nav class="navbar navbar-toggleable-md navbar-custom news-nav" role="navigation" aria-label="Site navigation">
     <div class="container d-flex flex-row flex-nowrap justify-content-between">
       <span class="mb-0">
-        <a class="navbar-brand mr-lg-5 text-uppercase" href="<?php echo esc_url( home_url( '/' )); ?>"> <?php echo bloginfo( 'name' ); ?></a>
+        <a class="navbar-brand mr-lg-5 text-uppercase" href="<?php echo esc_url( home_url( '/' )); ?>"><div class="pn-logo">Provost <span class="text-primary">Newsroom</span></div></a>
 
       </span>
       <?php if ( $menu ): ?>
