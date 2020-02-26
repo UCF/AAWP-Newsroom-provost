@@ -235,3 +235,10 @@ Frontpage articles
 .post-thumbnail {
   font-size: .8em;
 }
+
+/* archieve page */
+
+.archive-thumbnail img {
+  width: 100%;
+  height: auto;
+}
