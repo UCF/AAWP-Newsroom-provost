@@ -34,7 +34,7 @@
 
   <?php
 
-
+$au= NULL;
   if ( get_query_var('units') ) {
       // If so echo the value
       $au = get_query_var('units');
