@@ -7,6 +7,10 @@ This theme requires Advance Custom Fields Pro to activate.
 
 ##Updates
 
+### 1.3006
+#Fixed mobile issues on search and Categories
+#fixed missing variable in search
+
 ### 1.3003
 -fixed header issue on mobile
 -added ids for categories on the Homepage
