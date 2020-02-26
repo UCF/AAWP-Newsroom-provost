@@ -11,10 +11,22 @@
     while ( have_posts() ) : the_post(); ?>
     <article class="term-list-item mb-4 py-5 divider">
       <?php $link = get_permalink(); ?>
-      <div class="row">
-        <div class="order-1 order-sm-0 col-12 col-sm-6 col-md-8">
 
-    	       <h2 class="h3 archive-title text-secondary"><a href="<?php echo $link; ?>" class="text-secondary"><?php the_title(); ?> </a></h2>
+      <div class="row">
+
+        <div class="flex-md-last col-12  col-md-4">
+            <?php if(has_post_thumbnail()): ?>
+                    <div class="archive-thumbnail"> <a href="<?php echo $link; ?>"> <?php esc_attr(the_post_thumbnail( 'archive_thumb' )); ?> </a></div>
+            <?php else: ?>
+                    <img src="<?php echo esc_attr(get_stylesheet_directory_uri()); ?>/assets/provost-newsroom.jpg"  width="200" height="200" alt="Provost news deafult image"/>
+            <?php endif; ?>
+
+        </div>
+
+        <div class="col-12 col-md-8">
+
+          <h2 class="h3 archive-title text-secondary"><a href="<?php echo $link; ?>" class="text-secondary"><?php the_title(); ?> </a></h2>
+
              <div><?php echo esc_html(get_the_date( 'M d, Y' )); ?></div>
              <div class="post-cat">
 
@@ -38,14 +50,7 @@
 
              <div class="read-more text-uppercase font-weight-bold"><a href="<?php echo $link; ?>" class="">Read More ></a></div>
        </div>
-        <div class="order-0 order-sm-1 col-12 col-sm-6 col-md-4">
-            <?php if(has_post_thumbnail()): ?>
-                    <div class="archive-thumbnail"> <a href="<?php echo $link; ?>"> <?php esc_attr(the_post_thumbnail( 'archive_thumb' )); ?> </a></div>
-            <?php else: ?>
-                    <img src="<?php echo esc_attr(get_stylesheet_directory_uri()); ?>/assets/provost-newsroom.jpg"  width="200" height="200" alt="Provost news deafult image"/>
-            <?php endif; ?>
 
-        </div>
     	</div>
     </article>
 
