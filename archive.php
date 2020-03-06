@@ -1,6 +1,16 @@
 <?php get_header();?>
   <div class="container mt-3 mt-sm-2 mb-3 pb-sm-4">
-    <?php the_archive_title( '<h1 class="page-title mt-5 mb-5">', '</h1>' ); ?>
+    <?php the_archive_title( '<h1 class="page-title mt-5 mb-3">', '</h1>' );
+
+    if( get_the_archive_description() ):
+
+      the_archive_description( '<p class="lead archive-description mb-5">', '</p>' );
+    else:
+      esc_html('<div class="mb-3"> </div>');
+    endif;
+
+      ?>
+
 
 <?php while ( have_posts() ) : the_post(); ?>
     <article class="term-list-item mb-4 py-5 divider">
@@ -17,6 +27,7 @@
         <div class=" order-sm-1 col-12 col-md-8">
             <h2 class="h3 archive-title mb-2 text-secondary"><a href="<?php echo $link; ?>" class="text-secondary"><?php the_title(); ?> </a></h2>
             <p class="font-italic entry-date"><?php echo esc_html( get_the_date('D M j')); ?></p>
+            <?php if(has_excerpt()): ?><p class="entry-excerpt"><?php the_excerpt(); ?></p><?php endif; ?>
              <div class="read-more text-uppercase font-weight-bold"><a href="<?php echo $link; ?>" class="btn btn-outline-secondary btn-sm">Read More ></a></div>
        </div>
     	</div>
