@@ -27,8 +27,8 @@
         <div class=" order-sm-1 col-12 col-md-8">
             <h2 class="h3 archive-title mb-2 text-secondary"><a href="<?php echo $link; ?>" class="text-secondary"><?php the_title(); ?> </a></h2>
             <p class="font-italic entry-date"><?php echo esc_html( get_the_date('D M j')); ?></p>
-            <?php if(has_excerpt()): ?><p class="entry-excerpt"><?php the_excerpt(); ?></p><?php endif; ?>
-             <div class="read-more text-uppercase font-weight-bold"><a href="<?php echo $link; ?>" class="btn btn-outline-secondary btn-sm">Read More ></a></div>
+            <p class="entry-excerpt"><?php the_excerpt(); ?></p>
+            <div class="read-more text-uppercase font-weight-bold"><a href="<?php echo $link; ?>" class="btn btn-outline-secondary btn-sm">Read More ></a></div>
        </div>
     	</div>
     </article>
