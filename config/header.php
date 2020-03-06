@@ -21,7 +21,7 @@ add_filter('previous_posts_link_attributes', 'boostrap_4_pagination_posts_link_a
 // tn custom excerpt length
 function tn_custom_excerpt_length( $length ) {
 
-  if ( is_page_template( 'archives.php' ) ):
+   if ( is_archive() || is_home() ):
 
        return 55;
 
