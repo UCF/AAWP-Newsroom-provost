@@ -7,9 +7,14 @@ This theme requires Advance Custom Fields Pro to activate.
 
 ##Updates
 
+### 1.4
+  Moved files around
+  Add excerpt tp archive pages
+  Add category description to archive pages
+
 ### 1.3006
-#Fixed mobile issues on search and Categories
-#fixed missing variable in search
+-Fixed mobile issues on search and Categories
+-fixed missing variable in search
 
 ### 1.3003
 -fixed header issue on mobile
