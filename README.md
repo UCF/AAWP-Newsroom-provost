@@ -7,6 +7,10 @@ This theme requires Advance Custom Fields Pro to activate.
 
 ##Updates
 
+### 1.5
+Fixed latest articles not showing excerpts
+linked provost categories on the homepage
+
 ### 1.4
   Moved files around
   Add excerpt tp archive pages
