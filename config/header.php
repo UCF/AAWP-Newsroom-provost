@@ -14,7 +14,7 @@ add_filter( 'get_the_archive_title', 'my_theme_archive_title' ); //Remove “Cat
 // add page-link class to pagination buttons for bootstrap
 add_filter('next_posts_link_attributes', 'boostrap_4_pagination_posts_link_attributes'); //pagination
 add_filter('previous_posts_link_attributes', 'boostrap_4_pagination_posts_link_attributes'); //pagination
-add_theme_support('html5', array('search-form'));
+
 
 
 // Filter except length to 35 words.
