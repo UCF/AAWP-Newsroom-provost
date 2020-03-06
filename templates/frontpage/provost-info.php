@@ -96,7 +96,7 @@ function provost_news_section(){ //provides information on the provost?>
                                if($loop->have_posts()) {?>
                                  <div class="col-12 col-md-4">
                                     <h3 class="title-underline h4"> <?php
-                                    echo $term->name ?>
+                                    echo esc_html($term->name); ?>
 
                                   </h3>
                                       <ul class="list-unstyled">
@@ -107,6 +107,7 @@ function provost_news_section(){ //provides information on the provost?>
                                   endwhile;
                                     ?>
                                     </ul>
+                                    <a href="<?php echo get_category_link($term->term_id); ?>" class="text-uppercase"> More <?php echo esc_html($term->name); ?> >  </a>
                                   </div>
                                   <?php
                                }
