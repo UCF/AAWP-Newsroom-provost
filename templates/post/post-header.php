@@ -33,7 +33,7 @@ post header It includes the category, date published, title, excerpt, and image
 
           <?php $author = get_field('article_author'); ?>
           <?php if( $author): ?>
-        <div class="post-author font-italic small"> By: <?php echo $author; ?></div>      
+        <div class="post-author font-italic small"> By: <?php echo $author; ?></div>
         <?php endif; ?>
 
 
