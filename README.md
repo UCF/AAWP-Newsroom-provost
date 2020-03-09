@@ -7,6 +7,9 @@ This theme requires Advance Custom Fields Pro to activate.
 
 ##Updates
 
+### 1.6
+Blank page template for bio links
+
 ### 1.5
 Fixed latest articles not showing excerpts
 linked provost categories on the homepage
