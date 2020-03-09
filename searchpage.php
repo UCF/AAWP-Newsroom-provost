@@ -9,7 +9,7 @@
    <div class="pt-5 pb-2 px-4" style="background-color: #eceeef;">
      <?php get_search_form(); ?>
    </div>
-   
+
  </div>
 
  <?php get_footer();
