@@ -109,3 +109,29 @@ function rss_add_featured_image(){
   }
 
 }
+
+
+/*
+* Add full size image to rss feed
+*
+* @author Mark Bennett
+*/
+
+function today_add_full_featured_image(){
+
+  if ( function_exists( 'has_post_thumbnail' ) && has_post_thumbnail( $post->ID ) ) {
+    //get curent post featured image iff it has one
+
+    $attachment_id = get_post_thumbnail_id($post->ID);
+    $featured_image = wp_get_attachment_image_src( $attachment_id, 'full' );
+    $url = $featured_image[0];
+    $fileSize = filesize(get_attached_file($attachment_id));
+    $type = get_post_mime_type($attachment_id);
+
+//print featured iamge to rss feed
+    printf('<media:content url="%s" fileSize="%s" type="%s" medium="image" />', $url, $fileSize, $type);
+
+  }
+
+}
+add_action( 'rss2_item', 'today_add_full_featured_image' );
