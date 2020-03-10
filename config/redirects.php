@@ -82,3 +82,30 @@ if (   $current_post_meta && 'post' === get_post_type( $post->ID ) ) {
 
    return $url;
 }, 99, 2);
+
+/*
+rss feed add featured image
+ */
+
+
+add_action( 'rss2_item', 'rss_add_featured_image' );
+function rss_add_featured_image(){
+
+  if ( function_exists( 'has_post_thumbnail' ) && has_post_thumbnail( $post->ID ) ) {
+
+    $attachment_id = get_post_thumbnail_id($post->ID);
+
+    $featured_image = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
+
+    $url = $featured_image[0];
+
+    $length = filesize(get_attached_file($attachment_id));
+
+    $type = get_post_mime_type($attachment_id);
+
+    printf('<enclosure url="%s" length="%s" type="%s" />', $url, $length, $type);
+
+
+  }
+
+}
