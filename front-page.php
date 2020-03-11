@@ -3,8 +3,7 @@
 
 	<div class="main mb-5 pb-sm-4">
     <?php provost_news_featured_article(); ?>
-
-
+			<?php include( plugin_dir_path( __FILE__ ) . 'templates/frontpage/alerts.php');  ?>
 				<section class="provost-section">
         <?php provost_news_section() ?>
 			</section>
@@ -19,7 +18,7 @@
 				</section>
 				<?php endif; ?>
       <?php //get_sidebar(); ?>
-  
+
 
 
 <?php get_footer(); ?>
