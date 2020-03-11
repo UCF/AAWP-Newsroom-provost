@@ -88,12 +88,14 @@ rss feed add featured image
  */
 
 
-add_action( 'rss2_item', 'rss_add_featured_image' );
+//add_action( 'rss2_item', 'rss_add_featured_image' );
 function rss_add_featured_image(){
 
   if ( function_exists( 'has_post_thumbnail' ) && has_post_thumbnail( $post->ID ) ) {
 
     $attachment_id = get_post_thumbnail_id($post->ID);
+
+
 
     $featured_image = wp_get_attachment_image_src( $attachment_id, 'thumbnail' );
 
@@ -103,7 +105,7 @@ function rss_add_featured_image(){
 
     $type = get_post_mime_type($attachment_id);
 
-    printf('<enclosure url="%s" length="%s" type="%s" />', $url, $length, $type);
+    printf('<enclosure url="%s" length="%s" type="%s" /> ', $url, $length, $type);
 
 
   }
@@ -117,6 +119,14 @@ function rss_add_featured_image(){
 * @author Mark Bennett
 */
 
+
+
+function flipboard_namespace() {
+    echo 'xmlns:media="http://search.yahoo.com/mrss/"
+    xmlns:georss="http://www.georss.org/georss"';
+}
+//add_filter( 'rss2_ns', 'flipboard_namespace' );
+
 function today_add_full_featured_image(){
 
   if ( function_exists( 'has_post_thumbnail' ) && has_post_thumbnail( $post->ID ) ) {
@@ -125,13 +135,15 @@ function today_add_full_featured_image(){
     $attachment_id = get_post_thumbnail_id($post->ID);
     $featured_image = wp_get_attachment_image_src( $attachment_id, 'full' );
     $url = $featured_image[0];
+    $width = $featured_image[1];
+    $height = $featured_image[2];
     $fileSize = filesize(get_attached_file($attachment_id));
     $type = get_post_mime_type($attachment_id);
 
 //print featured iamge to rss feed
-    printf('<media:content url="%s" fileSize="%s" type="%s" medium="image" />', $url, $fileSize, $type);
+    printf(' <media:content url="%s" fileSize="%s" type="%s" width="%s" height="%s" />', $url, $fileSize, $type, $width,$height);
 
   }
 
 }
-add_action( 'rss2_item', 'today_add_full_featured_image' );
+//add_action( 'rss2_item', 'today_add_full_featured_image' );
