@@ -74,10 +74,10 @@ line-height: 30px;
 
 
 /*
-Off canvas menu
+*alert box
  */
-.ocs-slidebar {
-  z-index: 10000 !important;
+.border {
+  border: 2px solid #dee2e6!important;
 }
 
 /*
