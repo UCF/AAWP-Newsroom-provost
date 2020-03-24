@@ -11,6 +11,7 @@
 
 		<header class="site-header">
 
+
 			<?php if( ! is_singular( 'ucf_provost_roundup' )){echo ucfwp_get_header_markup(); } ?>
 		</header>
 		<?php if(!is_search()): ?>

@@ -16,7 +16,6 @@ add_filter('next_posts_link_attributes', 'boostrap_4_pagination_posts_link_attri
 add_filter('previous_posts_link_attributes', 'boostrap_4_pagination_posts_link_attributes'); //pagination
 
 
-
 // Filter except length to 35 words.
 // tn custom excerpt length
 function tn_custom_excerpt_length( $length ) {
