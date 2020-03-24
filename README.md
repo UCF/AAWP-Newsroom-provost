@@ -7,6 +7,9 @@ This theme requires Advance Custom Fields Pro to activate.
 
 ##Updates
 
+### 1.7
+introduces provost roundups for social media
+
 ### 1.6
 Blank page template for bio links
 full size feature image in rss feed
