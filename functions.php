@@ -46,6 +46,8 @@ require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/provost_news_entry_recome
 //pagination
 require_once( PROVOST_NEWS_THEME_DIR . 'inc/pagination.php');
 
+//cpt roundup
+require_once( PROVOST_NEWS_THEME_DIR . 'roundup/cpt.php');
 
 
 /*ACF Option Page */
