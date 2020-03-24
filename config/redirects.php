@@ -88,7 +88,7 @@ rss feed add featured image
  */
 
 
-//add_action( 'rss2_item', 'rss_add_featured_image' );
+add_action( 'rss2_item', 'rss_add_featured_image' );
 function rss_add_featured_image(){
 
   if ( function_exists( 'has_post_thumbnail' ) && has_post_thumbnail( $post->ID ) ) {

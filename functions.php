@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 add_action( 'wp_enqueue_scripts', 'enqueue_parent_styles' );// add parent style
 
 
@@ -23,7 +19,7 @@ define( 'PROVOST_NEWS_THEME_DIR', trailingslashit( get_stylesheet_directory() ) 
 require_once( PROVOST_NEWS_THEME_DIR . 'config/image-sizes.php'); // different image sizes
 require_once( PROVOST_NEWS_THEME_DIR . 'config/header.php'); // removes some of the athena theme filters
 require_once( PROVOST_NEWS_THEME_DIR . 'config/redirects.php'); // Handles Athena, post and feedzy plugin redirects
-require_once( PROVOST_NEWS_THEME_DIR . 'config/redirects.php'); //sets up the search filters
+require_once( PROVOST_NEWS_THEME_DIR . 'config/search.php'); //sets up the search filters
 
 
  /*
@@ -49,18 +45,6 @@ require_once( PROVOST_NEWS_THEME_DIR . 'templates/post/provost_news_entry_recome
 
 //pagination
 require_once( PROVOST_NEWS_THEME_DIR . 'inc/pagination.php');
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

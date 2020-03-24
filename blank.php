@@ -1,6 +1,7 @@
 <?php
 /**
  * Template Name: Blank Page Template
+ * Template Post Type: ucf_provost_roundupsss
  */
  ?>
 

@@ -131,14 +131,28 @@ Links
  */
  .links-article-info {
      text-align: center;
-     padding-top: 15px;
-    /* padding-bottom: 15px; */
+
+     padding-bottom: 15px;
      background-color: #fafafa;
  }
 
+ .links-article:hover{
+
+ }
+
  .links-header {
+   padding-top: 10px;
    line-height: 1.5rem !important;
    font-weight: 600 !important;
+ }
+
+ .roundup-img{
+   width: 100%;
+ }
+
+ /* roundup footer*/
+ .single-ucf_provost_roundup footer{
+   display: none;
  }
 
 /*
