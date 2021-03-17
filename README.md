@@ -5,7 +5,10 @@ A responsive news theme for the provost office
 ## Documentation
 This theme requires Advance Custom Fields Pro to activate.
 
-##Updates
+# Updates
+
+### 1.8
+Updated the homepage by moving the twiter location and the alert location
 
 ### 1.7
 introduces provost roundups for social media
