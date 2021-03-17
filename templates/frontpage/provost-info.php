@@ -37,12 +37,8 @@ function provost_news_section(){ //provides information on the provost?>
                  	// loop through the rows of data
                     while ( have_rows('pn_provost_resources') ) : the_row();
 
-
-
                         // display a sub field value
                         echo '<li><a href="'. get_sub_field('pn_provost_link_url') .'" >'. get_sub_field('pn_provost_link_title') . '</a></li>';
-
-
 
                     endwhile;
 
@@ -73,7 +69,7 @@ function provost_news_section(){ //provides information on the provost?>
                   foreach($provost_terms as $provost_term) { //loop for provost sub categories
                       wp_reset_query();
 
-                      $terms = get_terms( 'category', array( 'parent' => $provost_term->term_id, 'orderby' => 'slug', 'hide_empty' => false, 'exclude' => array(17) ) );
+                      $terms = get_terms( 'category', array( 'parent' => $provost_term->term_id, 'orderby' => 'slug', 'hide_empty' => false, 'include' => array(16) ) );
 
                          foreach( $terms as $term ) { ?>
 
@@ -116,6 +112,9 @@ function provost_news_section(){ //provides information on the provost?>
                            <?php
                          }
                       }       ?>
+		   <div class="col-12 col-md-4">
+			   <?php echo do_shortcode('[custom-twitter-feeds screenname="ucfacademics"   num=1 showbutton=false]') ?>
+		  </div>
         </div>
       </div>
     </section>

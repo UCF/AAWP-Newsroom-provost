@@ -1,5 +1,6 @@
 <?php
 
+function provost_news_alerts(){
 // Check value exists.
 if( have_rows('alert_style') ): ?>
 
@@ -13,7 +14,7 @@ if( have_rows('alert_style') ): ?>
 
         if( get_row_layout() == 'provost_news_ucf_alert' ):?>
 
-            <div class="alert alert-info">
+            <div class="alert alert-info mb-0">
               <div class="container">
         <?php
 
@@ -69,3 +70,5 @@ if( have_rows('alert_style') ): ?>
     endwhile;
 
 endif;
+	
+}

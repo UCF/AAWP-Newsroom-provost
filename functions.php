@@ -33,6 +33,7 @@ require_once( PROVOST_NEWS_THEME_DIR . 'inc/sidebars.php'); // stores all the si
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/top-articles.php'); //homepage top article
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/tax-articles.php'); //homepage article by categories
 require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/provost-info.php');
+require_once( PROVOST_NEWS_THEME_DIR . 'templates/frontpage/alerts.php');
 
 //Archive pages (tags, categories, authorpage)
 require_once( PROVOST_NEWS_THEME_DIR . 'inc/archive-title.php');
