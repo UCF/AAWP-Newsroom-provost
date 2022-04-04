@@ -10,7 +10,7 @@
 function remove_redirects() {
     remove_action( 'template_redirect', 'ucfwp_kill_unused_templates' );
 }
-add_action( 'after_setup_theme', 'remove_redirects');
+//add_action( 'after_setup_theme', 'remove_redirects');
 
 
 /**
@@ -27,7 +27,7 @@ function today_kill_unused_templates() {
 	}
 }
 
-add_action( 'template_redirect', 'today_kill_unused_templates' );
+//add_action( 'template_redirect', 'today_kill_unused_templates' );
 
 
 
@@ -46,7 +46,7 @@ Redirects post to an external site using the article link acf field.
 
     if (   $pn_url_redirect && 'post' === get_post_type( $post->ID ) ) {
 
-        $url =   $pn_url_redirect;
+        $url =   $pn_url_redirect . '?utm_source=provost_newsroom';
     }
 
     return $url;
@@ -55,33 +55,6 @@ Redirects post to an external site using the article link acf field.
 add_filter( 'post_link', 'provost_news_permalink', 10, 2 );
 
 
-
-//Themeisle external link for imported articles
-
-add_filter('post_link', function($url,$post) {
-
-
-   if ( is_admin() ) {
-      return $url;
-   }
-
-
-   $current_post_meta = get_post_meta( $post->ID, 'feedzy_item_url', true );
-/*
-   if ( ! empty( $current_post_meta ) ) {
-      return $current_post_meta;
-   }
-*/
-
-if (   $current_post_meta && 'post' === get_post_type( $post->ID ) ) {
-
-    $url =   $current_post_meta;
-}
-
-
-
-   return $url;
-}, 99, 2);
 
 /*
 rss feed add featured image
@@ -113,37 +86,83 @@ function rss_add_featured_image(){
 }
 
 
-/*
-* Add full size image to rss feed
-*
-* @author Mark Bennett
-*/
+
+function boostrap_4_pagination(){
+   if( is_singular() )
+       return;
+
+   global $wp_query;
+
+   /** Stop execution if there's only 1 page */
+   if( $wp_query->max_num_pages <= 1 )
+       return;
+
+   $paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
+   $max   = intval( $wp_query->max_num_pages );
+
+   /** Add current page to the array */
+   if ( $paged >= 1 )
+       $links[] = $paged;
+
+   /** Add the pages around the current page to the array */
+   if ( $paged >= 3 ) {
+       $links[] = $paged - 1;
+       $links[] = $paged - 2;
+   }
+
+   if ( ( $paged + 2 ) <= $max ) {
+       $links[] = $paged + 2;
+       $links[] = $paged + 1;
+   }
+
+   echo '<div class="pagination-container mt-5"><ul class="pagination justify-content-center">' . "\n";
+
+
+   /** Link to first page, plus ellipses if necessary */
+   if ( ! in_array( 1, $links ) ) {
+       $class = 1 == $paged ? ' class="page-item active"' : ' class="page-item"';
+
+       printf( '<li%s><a class="page-link" href="%s">First</a></li>' . "\n", $class, esc_url( get_pagenum_link( 1 ) ), '1' );
+
+     /*  if ( ! in_array( 2, $links ) )
+           echo '<li>…</li>'; */
+   }
+
+   /** Previous Post Link */
+   if ( get_previous_posts_link() )
+       printf( '<li class="page-item">%s</li>' . "\n", get_previous_posts_link("Previous") );
 
 
 
-function flipboard_namespace() {
-    echo 'xmlns:media="http://search.yahoo.com/mrss/"
-    xmlns:georss="http://www.georss.org/georss"';
+   /** Link to current page, plus 2 pages in either direction if necessary */
+   sort( $links );
+   foreach ( (array) $links as $link ) {
+       $class = $paged == $link ? ' class="page-item active"' : ' class="page-item"';
+       printf( '<li%s><a class="page-link" href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $link ) ), $link );
+   }
+
+
+   /** Next Post Link */
+   if ( get_next_posts_link() )
+       printf( '<li class="page-item">%s</li>' . "\n", get_next_posts_link("Next") );
+
+
+       /** Link to last page, plus ellipses if necessary */
+       if ( ! in_array( $max, $links ) ) {
+         /*
+           if ( ! in_array( $max - 1, $links ) )
+               echo '<li>…</li>' . "\n"; */
+
+           $class = $paged == $max ? ' class="page-item active"' : ' class="page-item"';
+           printf( '<li%s><a class="page-link" href="%s">Last</a></li>' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
+       }
+
+   echo '</ul></div>' . "\n";
+
 }
-//add_filter( 'rss2_ns', 'flipboard_namespace' );
 
-function today_add_full_featured_image(){
 
-  if ( function_exists( 'has_post_thumbnail' ) && has_post_thumbnail( $post->ID ) ) {
-    //get curent post featured image iff it has one
 
-    $attachment_id = get_post_thumbnail_id($post->ID);
-    $featured_image = wp_get_attachment_image_src( $attachment_id, 'full' );
-    $url = $featured_image[0];
-    $width = $featured_image[1];
-    $height = $featured_image[2];
-    $fileSize = filesize(get_attached_file($attachment_id));
-    $type = get_post_mime_type($attachment_id);
-
-//print featured iamge to rss feed
-    printf(' <media:content url="%s" fileSize="%s" type="%s" width="%s" height="%s" />', $url, $fileSize, $type, $width,$height);
-
-  }
-
+function boostrap_4_pagination_posts_link_attributes() {
+   return 'class="page-link"';
 }
-//add_action( 'rss2_item', 'today_add_full_featured_image' );

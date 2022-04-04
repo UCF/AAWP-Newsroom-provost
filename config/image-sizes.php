@@ -1,33 +1,48 @@
 <?php
 
 
-/*
-remove UCF wordpres theme default image sizes
-*/
-function remove_theme_image_sizes() {
- // Remove page header image sizes, since the UCF WP Theme's
- // media header logic isn't utilized in this theme.
- remove_image_size( 'header-img' );
- remove_image_size( 'header-img-sm' );
- remove_image_size( 'header-img-md' );
- remove_image_size( 'header-img-lg' );
- remove_image_size( 'header-img-xl' );
- remove_image_size( 'bg-img' );
- remove_image_size( 'bg-img-sm' );
- remove_image_size( 'bg-img-md' );
- remove_image_size( 'bg-img-lg' );
- remove_image_size( 'bg-img-xl' );
-}
 
-add_action( 'after_setup_theme', 'remove_theme_image_sizes', 11 );
 
-/*
-Custom image sizes
- */
- add_action( 'after_setup_theme', 'image_sizes_theme_setup' );
- function image_sizes_theme_setup() {
-     add_image_size( 'homepage-thumb', 220, 180, true ); // (cropped)
-     add_image_size( 'archive_thumb', 300, 200, true ); // (cropped)
-	 add_image_size( 'other_articles_thumb', 200, 150, true ); // (cropped)
 
+
+// Filter except length to 30 words.
+// tn custom excerpt length
+function tn_custom_excerpt_length( $length ) {
+
+    if ( is_archive() || is_home() ):
+ 
+        return 55;
+ 
+  else:
+ 
+    return 30;
+ 
+  endif;
+ 
  }
+ add_filter( 'excerpt_length', 'tn_custom_excerpt_length', 999 );
+
+
+
+
+ /*
+Remove “Category:”, “Tag:”, “Author:” from the_archive_title
+
+ */
+
+
+function my_theme_archive_title( $title ) {
+    if ( is_category() ) {
+        $title = single_cat_title( '', false );
+    } elseif ( is_tag() ) {
+        $title = single_tag_title( '', false );
+    } elseif ( is_author() ) {
+        $title = '<span class="vcard">' . get_the_author() . '</span>';
+    } elseif ( is_post_type_archive() ) {
+        $title = post_type_archive_title( '', false );
+    } elseif ( is_tax() ) {
+        $title = single_term_title( '', false );
+    }
+
+    return $title;
+}
