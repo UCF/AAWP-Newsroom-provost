@@ -103,74 +103,83 @@ function provost_news_top_articles_block_render_callback($block) {
 		$className .= ' ' . $block['className'];
 	} 
 	?>
-	
-	<div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
-	<div class="container"> 
-			<?php if ( have_rows( 'provost_top_articles_repeater' ) ) : ?>
-				<?php $rowcount = 0;
+
+<div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
+    <div class="container">
+        <?php if ( have_rows( 'provost_top_articles_repeater' ) ) : ?>
+        <?php $rowcount = 0;
 					$field_object = get_field_object('provost_top_articles_repeater');
 					$total_rows = count($field_object['value']);					?>
-				<div class="row">
-					<?php while ( have_rows( 'provost_top_articles_repeater' ) ) : the_row(); ?>
-						<?php $provost_top_article = get_sub_field( 'provost_top_article', false, false ); ?>
-						<?php if ( $provost_top_article ) : ?>
-							<?php
-									$link = get_permalink( $provost_top_article );
-									$thumb = get_the_post_thumbnail_url( $provost_top_article ,'aawwp-newsroom-article-lg' );
-									$thumb_small = get_the_post_thumbnail_url( $provost_top_article ,"aawwp-newsroom-article-sm" );
-									$alt = get_post_meta( $provost_top_article, '_wp_attachment_image_alt', true);
-									$title = get_the_title( $provost_top_article );
-									$categories = get_the_category($provost_top_article);
-                                    $description = get_field( "article_description", $provost_top_article );
+        <div class="row">
+            <?php while ( have_rows( 'provost_top_articles_repeater' ) ) : the_row(); ?>
+            <?php $provost_top_article = get_sub_field( 'provost_top_article', false, false ); ?>
+            <?php if ( $provost_top_article ) : ?>
+            <?php
+						$link = get_permalink( $provost_top_article );
+						$thumb = get_the_post_thumbnail_url( $provost_top_article ,'aawwp-newsroom-article-lg' );
+						$thumb_small = get_the_post_thumbnail_url( $provost_top_article ,"aawwp-newsroom-article-sm" );
+						$alt = get_post_meta( $provost_top_article, '_wp_attachment_image_alt', true);
+						$title = get_the_title( $provost_top_article );
+						$categories = get_the_category($provost_top_article);
+						$description = get_field( "article_description", $provost_top_article );
+						$cat_link = get_category_link( $categories[0]->term_id );
 							?>
-							<?php if( $rowcount == 0): ?>
-								<div class="col-12 col-md-7">										
-									<article class="card overflow-hidden border-0 rounded-0 pn-article-lg">
-                                         <?php if (has_post_thumbnail( $provost_top_article ) ): ?>		
-										    <div class="pn-article-sm-image"><img src="<?php echo esc_url( $thumb ); ?>" class="img-fluid rounded" alt="<?php echo esc_attr( $alt ); ?>"/></div>
-                                            <?php endif; ?>
-										<div class="card-img-overlay d-flex flex-column d-flex p-0 justify-content-end">
-												<div class="pn-content bg-black-gradiant p-3 rounded">
-											<?php  if ( ! empty( $categories ) ): ?>
-												<div class="pn-article-lg-cat mb-2">
-													<a href="<?php echo esc_url( get_category_link( $categories[0]->term_id ) ) ?>" class="text-secondary bg-primary px-2 py-1  font-weight-bold fontpage-cat-link" > <?php echo esc_html( $categories[0]->name ) ?> </a>
-												</div>
-											<?php endif; ?>
-												    <div class="pn-article-lg"><a href="<?php echo esc_url($link ); ?>" class="text-white"><h2 class="h4 "><?php echo esc_html($title) ?></h2></a></div>
-												</div>
-										</div>
-									</article>
-								</div>
-								<div class="col-12 col-md-5 d-flex flex-column justify-content-between">
-							<?php else: ?>								
-									<article class="d-flex pn-article-sm">
-										<div class="w-25">                                            
-                                            <?php if (has_post_thumbnail( $provost_top_article ) ): ?>			
-											    <div class="pn-article-sm-image"><a href="<?php echo esc_url($link ); ?>"><img src="<?php echo esc_url( $thumb_small ); ?>" class="img-fluid rounded mb-0" alt="<?php echo esc_attr( $alt ); ?>"/></a></div>  
-                                            <?php endif; ?>                                                  
-                                        </div>
-										<div class="w-75 pl-3">
-										<?php  if ( ! empty( $categories ) ): ?>
-											<div class="mb-2 pn-article-sm-cat">
-												<a href="<?php echo esc_url( get_category_link( $categories[0]->term_id ) ) ?>" class="text-secondary bg-primary px-2 py-1 font-weight-bold fontpage-cat-link" > <?php echo esc_html( $categories[0]->name ) ?> </a>
-											</div>
-										<?php endif; ?>
-											<div class="pn-article-sm-title"><a href="<?php echo esc_url( $link ); ?>" class="text-secondary h6 mb-0"><?php echo esc_html($title) ?></a></div>
-                                            
-										</div>
-									</article>						
-							<?php endif; ?>
-							<?php $rowcount++; ?>	
-						<?php endif; ?>						
-					<?php endwhile; ?>
-							</div>
-				</div>
-			<?php endif; ?>
-			</div>	
-	</div>
-	
-	
-	<?php
+            <?php if( $rowcount == 0): ?>
+            <div class="col-12 col-md-7">
+                <article class="card overflow-hidden border-0 rounded-0 pn-article-lg">
+                    <?php if (has_post_thumbnail( $provost_top_article ) ): ?>
+                    <div class="pn-article-sm-image"><img src="<?php echo esc_url( $thumb ); ?>"
+                            class="img-fluid rounded" alt="<?php echo esc_attr( $alt ); ?>" /></div>
+                    <?php endif; ?>
+                    <div class="card-img-overlay d-flex flex-column d-flex p-0 justify-content-end">
+                        <div class="pn-content bg-black-gradiant p-3 rounded">
+                            <?php  if ( ! empty( $categories ) ): ?>
+                            <div class="pn-article-lg-cat mb-2">
+                                <a href="<?php echo esc_url($cat_link); ?>"
+                                    class="text-secondary bg-primary px-2 py-1  font-weight-bold fontpage-cat-link"><?php echo esc_html( $categories[0]->name ); ?></a>
+                            </div>
+                            <?php endif; ?>
+                            <div class="pn-article-lg"><a href="<?php echo esc_url($link ); ?>" class="text-white">
+                                    <h2 class="h4 "><?php echo esc_html($title); ?></h2>
+                                </a></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="col-12 col-md-5 d-flex flex-column justify-content-between">
+                <?php else: ?>
+                <article class="d-flex pn-article-sm">
+                    <div class="w-25">
+                        <?php if (has_post_thumbnail( $provost_top_article ) ): ?>
+                        <div class="pn-article-sm-image"><a href="<?php echo esc_url($link ); ?>"><img
+                                    src="<?php echo esc_url( $thumb_small ); ?>" class="img-fluid rounded mb-0"
+                                    alt="<?php echo esc_attr( $alt ); ?>" /></a></div>
+                        <?php endif; ?>
+                    </div>
+                    <div class="w-75 pl-3">
+                        <?php  if ( ! empty( $categories ) ): ?>
+                        <div class="mb-2 pn-article-sm-cat">
+                            <a href="<?php echo esc_url( get_category_link( $categories[0]->term_id ) ); ?>"
+                                class="text-secondary bg-primary px-2 py-1 font-weight-bold fontpage-cat-link"><?php echo esc_html( $categories[0]->name ); ?></a>
+                        </div>
+                        <?php endif; ?>
+                        <div class="pn-article-sm-title"><a href="<?php echo esc_url( $link ); ?>"
+                                class="text-secondary h6 mb-0"><?php echo esc_html($title) ?></a></div>
+
+                    </div>
+                </article>
+                <?php endif; ?>
+                <?php $rowcount++; ?>
+                <?php endif; ?>
+                <?php endwhile; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
+
+
+<?php
 }
 
 
@@ -205,39 +214,41 @@ if ( ! empty( $block['align'] ) ) {
 ?>
 
 <style type="text/css">
-	<?php echo '#' . $id; ?> {
-		/* Add styles that use ACF values here */
-	}
+<?php echo '#'. $id;
+
+?> {
+    /* Add styles that use ACF values here */
+}
 </style>
 
 <div id="<?php echo esc_attr( $id ); ?>" class="<?php echo esc_attr( $classes ); ?>">
-	<div class="container jumbotron- bg-inverse- bg-faded rounded pt-3 px-4">
-		<div class="row">
-			<div class="col-12 col-md-3">
-				<?php $aawp_newsroom_spotlight_image = get_field( 'aawp_newsroom_spotlight_image' ); ?>
-				<?php if ( $aawp_newsroom_spotlight_image ) : ?>
-					<img src="<?php echo esc_url( $aawp_newsroom_spotlight_image['url'] ); ?>" alt="<?php echo esc_attr( $aawp_newsroom_spotlight_image['alt'] ); ?>" />		
-				<?php endif; ?>
-			</div>			
-			<div class="col-12 col-md-9 d-flex align-items-center pl-md-5">	
-				<?php $aawp_newsroom_spotlight = get_field( 'aawp_newsroom_spotlight' );
+    <div class="container jumbotron- bg-inverse- bg-faded rounded pt-3 px-4">
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <?php $aawp_newsroom_spotlight_image = get_field( 'aawp_newsroom_spotlight_image' ); ?>
+                <?php if ( $aawp_newsroom_spotlight_image ) : ?>
+                <img src="<?php echo esc_url( $aawp_newsroom_spotlight_image['url'] ); ?>"
+                    alt="<?php echo esc_attr( $aawp_newsroom_spotlight_image['alt'] ); ?>" />
+                <?php endif; ?>
+            </div>
+            <div class="col-12 col-md-9 d-flex align-items-center pl-md-5">
+                <?php $aawp_newsroom_spotlight = get_field( 'aawp_newsroom_spotlight' );
 				$link = get_permalink( $aawp_newsroom_spotlight );				
 				$title = get_the_title( $aawp_newsroom_spotlight );
 				$categories = get_the_category($aawp_newsroom_spotlight);
 				$description = get_field( "article_description", $aawp_newsroom_spotlight );			
 				
 			?>
-				<?php if ( $aawp_newsroom_spotlight ) : ?>
-					<div>			
-						<h2 class=""><a href="<?php echo $link ?>" class="text-secondary"><?php echo $title ?></a></h2>
-						<p><?php echo $description ?></p>	
-						<a href="<?php echo $link ?>" class="btn btn-primary mb-3">View Story</a>
-					</div>
-				<?php endif; ?>
-			</div>
-		</div>				
-	</div>	
+                <?php if ( $aawp_newsroom_spotlight ) : ?>
+                <div>
+                    <h2 class=""><a href="<?php echo $link ?>" class="text-secondary"><?php echo $title ?></a></h2>
+                    <p><?php echo $description ?></p>
+                    <a href="<?php echo $link ?>" class="btn btn-primary mb-3">View Story</a>
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
 </div>
 
 <?php	}
-
