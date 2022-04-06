@@ -310,17 +310,12 @@ Frontpage articles
 *
  */
 
-.pn-article p:first-child::first-letter {
-  color: hotpink;
-  padding: 0 0.3rem;
-  margin: 0 0.3rem 0 0;
-  border: 2px solid;
-  border-radius: 8px;
-  font-family: "IBM Plex Mono", monospace;
-
-  font-size: 4rem;
+.entry-content p:first-child::first-letter {
+  line-height: 2.75rem;
+  margin: 0.2rem 0.25rem 0 0;
+  font-weight: 800;
+  font-size: 3.75rem;
   float: left;
-  line-height: 1;
 }
 
 .cat-link {
