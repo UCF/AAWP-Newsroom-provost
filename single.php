@@ -1,7 +1,7 @@
 <?php get_header();
 the_post(); ?>
 <div class="container mt-3 mt-sm-2 mb-3 pt-md-4 pb-sm-4">
-    <article class="<?php echo $post->post_status; ?> post-<?php the_ID(); ?> article">
+    <article class="<?php echo $post->post_status; ?> post-<?php the_ID(); ?> pn-article">
         <header class="entry-header mb-5">
             <div class="row d-flex justify-content-center">
 

@@ -238,13 +238,6 @@ dividers
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.provost-section {
-  /* border-bottom: 1px solid rgba(0,0,0,.1); */
-}
-
-.colleges-list li {
-}
-
 .colleges-list li a {
   color: #000;
 }
@@ -317,6 +310,19 @@ Frontpage articles
 *
  */
 
+.pn-article p:first-child::first-letter {
+  color: hotpink;
+  padding: 0 0.3rem;
+  margin: 0 0.3rem 0 0;
+  border: 2px solid;
+  border-radius: 8px;
+  font-family: "IBM Plex Mono", monospace;
+
+  font-size: 4rem;
+  float: left;
+  line-height: 1;
+}
+
 .cat-link {
   font-weight: 500;
   text-transform: uppercase;
@@ -346,9 +352,6 @@ Frontpage articles
   color: #000;
 }
 
-.post-title {
-}
-
 .post-thumbnail {
   font-size: 0.8em;
 }
@@ -362,36 +365,35 @@ Frontpage articles
     2px 2px 0 #000;
 }
 
-
 /* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {  
+@media (min-width: 576px) {
   .ucf-related-article {
     font-size: 2rem;
   }
 }
- 
+
 /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
-@media (min-width: 768px) {  
+@media (min-width: 768px) {
   .ucf-related-article {
     margin-left: -50px;
     margin-bottom: -0.25em;
     font-size: 3rem;
   }
 }
- 
+
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) { 
-  .ucf-related-article {
-    font-size: 4.5rem
-}
- 
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {  
+@media (min-width: 992px) {
   .ucf-related-article {
     font-size: 4.5rem;
   }
 }
 
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  .ucf-related-article {
+    font-size: 4.5rem;
+  }
+}
 
 /* archieve page */
 
@@ -430,4 +432,25 @@ Frontpage articles
   background-color: #ffcc00 !important;
   font-weight: 500;
   border-radius: 5px;
+}
+
+/* 
+* wp gridbulder pagination
+*/
+
+.wpgb-pagination {
+  display: flex;
+}
+
+.wpgb-facet .wpgb-pagination li {
+  margin: 4px 0 !important;
+}
+
+.wpgb-facet .wpgb-pagination li a {
+  border: 1px solid #ddd !important;
+  color: #000 !important;
+}
+
+.wpgb-facet .wpgb-pagination li [aria-current="true"] {
+  background-color: #ffcc00 !important;
 }

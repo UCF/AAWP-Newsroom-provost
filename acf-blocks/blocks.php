@@ -228,7 +228,7 @@ if ( ! empty( $block['align'] ) ) {
                 <?php $aawp_newsroom_spotlight_image = get_field( 'aawp_newsroom_spotlight_image' ); ?>
                 <?php if ( $aawp_newsroom_spotlight_image ) : ?>
                 <img src="<?php echo esc_url( $aawp_newsroom_spotlight_image['url'] ); ?>"
-                    alt="<?php echo esc_attr( $aawp_newsroom_spotlight_image['alt'] ); ?>" />
+                    alt="<?php echo esc_attr( $aawp_newsroom_spotlight_image['alt'] ); ?>" class="img-fluid" />
                 <?php endif; ?>
             </div>
             <div class="col-12 col-md-9 d-flex align-items-center pl-md-5">
