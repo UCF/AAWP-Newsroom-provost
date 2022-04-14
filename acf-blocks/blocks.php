@@ -113,7 +113,7 @@ function provost_news_top_articles_block_render_callback($block) {
         <div class="row">
             <?php while ( have_rows( 'provost_top_articles_repeater' ) ) : the_row(); ?>
             <?php $provost_top_article = get_sub_field( 'provost_top_article', false, false ); ?>
-            <?php if ( $provost_top_article ) : ?>
+            <?php if ( $provost_top_article ) : //get all the subfields?>
             <?php
 						$link = get_permalink( $provost_top_article );
 						$thumb = get_the_post_thumbnail_url( $provost_top_article ,'aawwp-newsroom-article-lg' );
@@ -124,8 +124,8 @@ function provost_news_top_articles_block_render_callback($block) {
 						$description = get_field( "article_description", $provost_top_article );
 						$cat_link = get_category_link( $categories[0]->term_id );
 							?>
-            <?php if( $rowcount == 0): ?>
-            <div class="col-12 col-md-7">
+            <?php if( $rowcount == 0): //first item im the repeater. Large image ?>
+            <div class="col-12 col-md-7 mb-3 mb-md-0">
                 <article class="card overflow-hidden border-0 rounded-0 pn-article-lg">
                     <?php if (has_post_thumbnail( $provost_top_article ) ): ?>
                     <div class="pn-article-sm-image"><img src="<?php echo esc_url( $thumb ); ?>"
@@ -147,16 +147,16 @@ function provost_news_top_articles_block_render_callback($block) {
                 </article>
             </div>
             <div class="col-12 col-md-5 d-flex flex-column justify-content-between">
-                <?php else: ?>
-                <article class="d-flex pn-article-sm">
-                    <div class="w-25">
+                <?php else: //The other three articles on the right sise ?>
+                <article class="d-flex row pn-article-sm mb-3 mb-md-0">
+                    <div class="col-12 col-sm-3 mb-3 mb-md-0">
                         <?php if (has_post_thumbnail( $provost_top_article ) ): ?>
                         <div class="pn-article-sm-image"><a href="<?php echo esc_url($link ); ?>"><img
                                     src="<?php echo esc_url( $thumb_small ); ?>" class="img-fluid rounded mb-0"
                                     alt="<?php echo esc_attr( $alt ); ?>" /></a></div>
                         <?php endif; ?>
                     </div>
-                    <div class="w-75 pl-3">
+                    <div class="col-12 col-md-9 pl-3">
                         <?php  if ( ! empty( $categories ) ): ?>
                         <div class="mb-2 pn-article-sm-cat">
                             <a href="<?php echo esc_url( get_category_link( $categories[0]->term_id ) ); ?>"

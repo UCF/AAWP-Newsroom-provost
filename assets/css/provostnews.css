@@ -449,3 +449,8 @@ Frontpage articles
 .wpgb-facet .wpgb-pagination li [aria-current="true"] {
   background-color: #ffcc00 !important;
 }
+
+.bottom-image img {
+  vertical-align: bottom;
+  border: 0;
+}

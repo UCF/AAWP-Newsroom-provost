@@ -79,8 +79,9 @@ function ucfwp_get_header_markup(){?>
             <a class="navbar-brand mr-lg-5" href="<?php echo esc_url( home_url( '/' )); ?>">
                 <div class="pn-logo">
                     <?php if ( has_custom_logo() ): ?>
-                    <img src="<?php echo esc_url( $logo[0] ); ?>" alt="<?php echo get_bloginfo( 'name' ); ?>"
-                        width="<?php echo esc_attr( $logo[1] ); ?>" height="<?php echo esc_attr( $logo[2] ); ?>">
+                    <img src="<?php echo esc_url( $logo[0] ); ?>" class="img-fluid"
+                        alt="<?php echo get_bloginfo( 'name' ); ?>" width="<?php echo esc_attr( $logo[1] ); ?>"
+                        height="<?php echo esc_attr( $logo[2] ); ?>">
                     <?php else: ?>
                     <div><?php echo esc_html(get_bloginfo('name')); ?></div>
                     <?php endif; ?>
@@ -219,7 +220,7 @@ function my_theme_archive_title( $title ) {
   function remove_redirects() {
     remove_action( 'template_redirect', 'ucfwp_kill_unused_templates' );
 }
-//add_action( 'after_setup_theme', 'remove_redirects');
+add_action( 'after_setup_theme', 'remove_redirects');
 
 
 /**
@@ -236,7 +237,7 @@ function today_kill_unused_templates() {
 	}
 }
 
-//add_action( 'template_redirect', 'today_kill_unused_templates' );
+add_action( 'template_redirect', 'today_kill_unused_templates' );
 
 
 
