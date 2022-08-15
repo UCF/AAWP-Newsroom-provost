@@ -22,7 +22,8 @@ Template Post Type: post, page
 	            </div>
 	            <div class="col-12 col-md-8 h-100 text-center text-md-left pt-3 pt-md-0 align-self-center">
 	                <h1 class="has-text-align-left"><?php the_title(); ?></h1>
-	                <p class="has-text-align-left lead text-default-aw"><?php the_field('provost_roundup_sub_tittle' ?></p>
+	                <p class="has-text-align-left lead text-default-aw"><?php the_field('provost_roundup_sub_tittle') ?>
+	                </p>
 	            </div>
 	        </div>
 	    </section>
