@@ -55,7 +55,7 @@ function register_provost_news_top_articles_block() {
 			'icon'					=> 'layout',
 			'keywords'				=> array( 'provost', 'news', 'top', 'articles' ),
 			'post_types'			=> array( 'post', 'page' ),
-			'mode'					=> 'preview',
+			'mode'					=> 'true',
 			// 'align'				=> 'wide',
 			//'render_template'		=> 'acf-blocks/top-article.php',
 			 'render_callback'	=> 'provost_news_top_articles_block_render_callback',
@@ -63,6 +63,7 @@ function register_provost_news_top_articles_block() {
 			// 'enqueue_script' 	=> get_template_directory_uri() . '/template-parts/blocks/provost-news-top-articles/provost-news-top-articles.js',
 			// 'enqueue_assets' 	=> 'provost_news_top_articles_block_enqueue_assets',
 		));
+
 
 
 		// Register feature Article/ Faculty
@@ -74,7 +75,7 @@ function register_provost_news_top_articles_block() {
 			'icon'					=> 'layout',
 			'keywords'				=> array( 'provost', 'news', 'spotlight', 'article' ),
 			'post_types'			=> array( 'post', 'page' ),
-			'mode'					=> 'preview',
+			'mode'					=> 'true',
 			// 'align'				=> 'wide',
 			//'render_template'		=> 'acf-blocks/top-article.php',
 			 'render_callback'	=> 'provost_news_spotlight_block_render_callback',
@@ -106,13 +107,13 @@ function provost_news_top_articles_block_render_callback($block) {
 
 <div id="<?php echo esc_attr($id); ?>" class="<?php echo esc_attr($className); ?>">
     <div class="container">
-        <?php if ( have_rows( 'provost_top_articles_repeater' ) ) : ?>
+        <?php if ( have_rows( 'pn_top_articles_repeater' ) ) : ?>
         <?php $rowcount = 0;
-					$field_object = get_field_object('provost_top_articles_repeater');
+					$field_object = get_field_object('pn_top_articles_repeater');
 					$total_rows = count($field_object['value']);					?>
         <div class="row">
-            <?php while ( have_rows( 'provost_top_articles_repeater' ) ) : the_row(); ?>
-            <?php $provost_top_article = get_sub_field( 'provost_top_article', false, false ); ?>
+            <?php while ( have_rows( 'pn_top_articles_repeater' ) ) : the_row(); ?>
+            <?php $provost_top_article = get_sub_field( 'pn_top_article', false, false ); ?>
             <?php if ( $provost_top_article ) : //get all the subfields?>
             <?php
 						$link = get_permalink( $provost_top_article );
@@ -129,7 +130,7 @@ function provost_news_top_articles_block_render_callback($block) {
                 <article class="card overflow-hidden border-0 rounded-0 pn-article-lg">
                     <?php if (has_post_thumbnail( $provost_top_article ) ): ?>
                     <div class="pn-article-sm-image"><img src="<?php echo esc_url( $thumb ); ?>"
-                            class="img-fluid rounded" alt="<?php echo esc_attr( $alt ); ?>" /></div>
+                            class="img-fluid rounded" alt="<?php echo esc_attr( $alt ); ?>" /></div> >
                     <?php endif; ?>
                     <div class="card-img-overlay d-flex flex-column d-flex p-0 justify-content-end">
                         <div class="pn-content bg-black-gradiant p-3 rounded">
@@ -181,6 +182,7 @@ function provost_news_top_articles_block_render_callback($block) {
 
 <?php
 }
+
 
 
 
